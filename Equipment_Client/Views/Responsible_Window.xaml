@@ -1,0 +1,43 @@
+﻿<Window x:Class="Equipment_Client.Views.Responsible_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Equipment_Client.Views"
+        mc:Ignorable="d"
+        x:Name="Window"
+        Title="" MinHeight="550" MinWidth="900" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+            <Button Style="{StaticResource Back}" HorizontalAlignment="Left"  Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image/back.png"/>
+                </Button.Background>
+            </Button>
+            <Button Command="{Binding OpenResponsibleEquipment}">
+                <StackPanel Orientation="Horizontal" Width="220">
+                    <Image Width="50" Height="50"  Source="/Image/book.png"/>
+                    <TextBlock Text="Оборудование" Margin="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding OpenRequestEquipment}">
+                <StackPanel Orientation="Horizontal" Width="220">
+                    <Image Width="50" Height="50"  Source="/Image/booking1.png"/>
+                    <TextBlock Text="Запросы на бронирование" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="145" />
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding OpenDiagramm}" >
+                <StackPanel Orientation="Horizontal" Width="227">
+                    <Image Width="50" Height="50"  Source="/Image/pie.png"/>
+                    <TextBlock Text="Диаграмма востребованности оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="175" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

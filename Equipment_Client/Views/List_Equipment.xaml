@@ -1,0 +1,69 @@
+﻿<Page x:Class="Equipment_Client.Views.List_Equipment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Equipment_Client.Views"
+      xmlns:tools="clr-namespace:Equipment_Client.Tools"
+      xmlns:models="clr-namespace:Equipment_Client.Models"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="List_Equipment">
+    <Page.Resources>
+
+        <Style x:Key="container" TargetType="ListViewItem">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IdStatus}" Value="1">
+                    <Setter Property="Background" Value="#FF6DBE6D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IdStatus}" Value="2">
+                    <Setter Property="Background" Value="#FFBE846D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IdStatus}" Value="3">
+                    <Setter Property="Background" Value="#FFBE846D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IdStatus}" Value="4">
+                    <Setter Property="Background" Value="#FFBE846D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IdStatus}" Value="5">
+                    <Setter Property="Background" Value="#FFBEBC6D"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IdStatus}" Value="7">
+                    <Setter Property="Background" Value="#FFBEBC6D"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Equipments}" ItemContainerStyle="{StaticResource container}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Название оборудования" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding IdTypeNavigation.Title}" />
+                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.Lastname}" />
+                    <GridViewColumn Header="Габариты" DisplayMemberBinding="{Binding Dimansions}" />
+                    <GridViewColumn Header="Вес (кг)" DisplayMemberBinding="{Binding Weight}"/>
+                    <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding IdStatusNavigation.Title}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+            <Label Content="Поиск по названию:" />
+            <StackPanel Orientation="Horizontal" Background="#FFC1F7FD" Height="40">
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30"/>
+                <Image Height="30" Width="30" Source="/Image/search.png"/>
+            </StackPanel>
+            <Label Content="Сортировать по типу"/>
+            <ComboBox ItemsSource="{Binding Types}"
+                      SelectedItem="{Binding SelectType}"
+                      DisplayMemberPath="Title"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,34 @@
+﻿<Window x:Class="Equipment_Client.Views.EditEquipment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Equipment_Client.Views"
+        mc:Ignorable="d"
+        x:Name="window"
+        Title="EditEquipment" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFC1F7FD">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel VerticalAlignment="Center">
+            <Label Content="Название оборудования"/>
+            <TextBox Text="{Binding Equipment.Name}"/>
+            <Label Content="Тип оборудования"/>
+            <ComboBox ItemsSource="{Binding Types}"
+                      SelectedItem="{Binding SelectType}"
+                      DisplayMemberPath="Title"/>
+            <Label Content="Ответственный за оборудование"/>
+            <ComboBox ItemsSource="{Binding Scientists}"
+                      SelectedItem="{Binding SelectScientist}"
+                      DisplayMemberPath="Lastname"/>
+            <Label Content="Габариты"/>
+            <TextBox Text="{Binding Equipment.Dimansions}"/>
+            <Label Content="Вес (кг)"/>
+            <TextBox Text="{Binding Equipment.Weight}"/>
+            
+        </StackPanel>
+        <Button Command="{Binding Save}" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить"/>
+    </Grid>
+</Window>

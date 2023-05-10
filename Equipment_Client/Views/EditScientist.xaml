@@ -1,0 +1,33 @@
+﻿<Window x:Class="Equipment_Client.Views.EditScientist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Equipment_Client.Views"
+        mc:Ignorable="d"
+        x:Name="window"
+        Title="Редактирование сотрудника" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Background="#FFC1F7FD">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel  VerticalAlignment="Center">
+            <Label Content="Имя"/>
+            <TextBox Text="{Binding Scientist.Firstname}"/>
+            <Label Content="Отчество"/>
+            <TextBox Text="{Binding Scientist.Patronymic}"/>
+            <Label Content="Фамилия"/>
+            <TextBox Text="{Binding Scientist.Lastname}"/>
+            <Label Content="Должность"/>
+            <ComboBox ItemsSource="{Binding Positions}" 
+                      SelectedItem="{Binding SelectPosition}" 
+                      DisplayMemberPath="Title"/>
+            <Label Content="Логин" Visibility="{Binding Visibility}"/>
+            <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}"/>
+            <Label Content="Пароль" Visibility="{Binding Visibility}"/>
+            <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}"/>
+        </StackPanel>
+        <Button Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить" Command="{Binding Save}"/>
+    </Grid>
+</Window>

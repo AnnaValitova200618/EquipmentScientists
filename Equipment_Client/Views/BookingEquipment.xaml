@@ -1,0 +1,42 @@
+﻿<Page x:Class="Equipment_Client.Views.BookingEquipment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Equipment_Client.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BookingEquipment">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10" VerticalAlignment="Center">
+            <Label Content="Бронирование" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
+            <Label Content="Название оборудования" />
+            <ComboBox ItemsSource="{Binding Equipments}"
+                      SelectedItem="{Binding SelectEquipment}"
+                      DisplayMemberPath="Name"/>
+            <Label Content="Ответственный за оборудование" />
+            <TextBox IsReadOnly="True" Text="{Binding FIO}"/>
+            <Label Content="Дата начала бронирования"/>
+            <DatePicker SelectedDate="{Binding Booking.DateStart}"/>
+            <Label Content="Дата конца бронирования"/>
+            <DatePicker SelectedDate="{Binding Booking.DateEnd}"/>
+            
+            <Label Content="Деятельность бронирования" />
+            <ComboBox ItemsSource="{Binding Purposes}"
+                      SelectedItem="{Binding SelectPurpose}"
+                      DisplayMemberPath="Title"/>
+            
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Забронировать" Command="{Binding Save}" Width="200"/>
+            <Button Content="Очистить форму" Width="200" Command="{Binding CleanForm}"/>
+        </StackPanel>
+        
+    </Grid>
+</Page>

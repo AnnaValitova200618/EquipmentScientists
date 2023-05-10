@@ -1,0 +1,40 @@
+﻿<Page x:Class="Equipment_Client.Views.RequestEquipment"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Equipment_Client.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="RequestEquipment">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+            
+            <Label Content="Сортировать по:"/>
+            <Label Content="Деятельности бронирования"/>
+            <ComboBox/>
+            <Label Content="Оборудованию"/>
+            <ComboBox/>
+        </StackPanel>
+        <DataGrid ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Название оборудования" Binding="{Binding IdEquipmentNavigation.Name}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Научный работник" Binding="{Binding IdScientistNavigation.Lastname}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Деятельность бронирования" Binding="{Binding IdPurposeOfUseNavigation.Title}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата начала" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата конца" Binding="{Binding DateEnd, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Подтверждение" Binding="{Binding ApprovedID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Grid.Row="1" Content="Одобрить" Command="{Binding Approve}"/>
+    </Grid>
+</Page>
