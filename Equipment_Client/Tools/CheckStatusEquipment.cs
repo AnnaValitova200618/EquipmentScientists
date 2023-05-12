@@ -34,10 +34,12 @@ namespace Equipment_Client.Tools
                 if (approvedBooking.DateStart <= DateTime.Now.Date)
                 {
                     approvedBooking.IdEquipmentNavigation.IdStatus = 7;
+                    approvedBooking.IdEquipmentNavigation.IdStatusNavigation = DBInstance.GetInstance().Statuses.Find(7);
                 }
                 if (approvedBooking.DateStart > DateTime.Now.Date)
                 {
                     approvedBooking.IdEquipmentNavigation.IdStatus = 5;
+                    approvedBooking.IdEquipmentNavigation.IdStatusNavigation = DBInstance.GetInstance().Statuses.Find(5);
                 }
             }
 
