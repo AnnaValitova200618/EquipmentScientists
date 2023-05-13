@@ -18,19 +18,19 @@
                     <ImageBrush ImageSource="/Image/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Command="{Binding OpenScientists}">
+            <Button Command="{Binding OpenScientists}" Height="60">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/users.png"/>
                     <TextBlock Text="Сотрудники" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenEquipment}">
+            <Button Command="{Binding OpenEquipment}" Height="60">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Оборудование" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
         </StackPanel>
-        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Background="#FFC1F7FD" BorderBrush="#FF585858" BorderThickness="5"/>
     </Grid>
 </Window>

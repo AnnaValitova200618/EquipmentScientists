@@ -15,27 +15,33 @@
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IdStatus}" Value="1">
                     <Setter Property="Background" Value="#FF6DBE6D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IdStatus}" Value="2">
                     <Setter Property="Background" Value="#FFBE846D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IdStatus}" Value="3">
                     <Setter Property="Background" Value="#FFBE846D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IdStatus}" Value="4">
                     <Setter Property="Background" Value="#FFBE846D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IdStatus}" Value="5">
                     <Setter Property="Background" Value="#FFBEBC6D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IdStatus}" Value="7">
                     <Setter Property="Background" Value="#FFBEBC6D"/>
+                    <Setter Property="Height" Value="35"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
         
     </Page.Resources>
-    <Grid>
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
@@ -54,16 +60,16 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
-            <Label Content="Поиск по названию:" />
-            <StackPanel Orientation="Horizontal" Background="#FFC1F7FD" Height="40">
-                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30"/>
+            <Label Content="Поиск по названию:" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="14"/>
                 <Image Height="30" Width="30" Source="/Image/search.png"/>
             </StackPanel>
-            <Label Content="Сортировать по типу"/>
+            <Label Content="Сортировать по типу" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Types}"
                       SelectedItem="{Binding SelectType}"
-                      DisplayMemberPath="Title"/>
-            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию"/>
         </StackPanel>
     </Grid>
 </Page>

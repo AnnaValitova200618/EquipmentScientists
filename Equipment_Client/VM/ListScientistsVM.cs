@@ -62,21 +62,39 @@ namespace Equipment_Client.VM
         }
         private void DoSearch()
         {
-            var scientists = DBInstance.GetInstance().Scientists.
-                Where(s=>s.Firstname.Contains(Search) || 
-                         s.Patronymic.Contains(Search) || 
-                         s.Lastname.Contains(Search) || 
-                         s.Login.Contains(Search)).ToList();
-            if(SelectedPosition != null)
+            try
             {
-                scientists = scientists.Where(s=>s.IdPosition == SelectedPosition.Id).ToList();
+                var scientists = DBInstance.GetInstance().Scientists.
+                    Where(s=>s.Firstname.Contains(Search) || 
+                             s.Patronymic.Contains(Search) || 
+                             s.Lastname.Contains(Search) || 
+                             s.Login.Contains(Search)).ToList();
+                if(SelectedPosition != null)
+                {
+                    scientists = scientists.Where(s=>s.IdPosition == SelectedPosition.Id).ToList();
+                }
+                Scientists = scientists;
             }
-            Scientists = scientists;
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+           
         }
         public ListScientistsVM()
         {
-            Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
-            Positions = DBInstance.GetInstance().Positions.ToList();
+            try
+            {
+                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
+                Positions = DBInstance.GetInstance().Positions.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
 
             RemoveUser = new CustomCommand(() =>
             {

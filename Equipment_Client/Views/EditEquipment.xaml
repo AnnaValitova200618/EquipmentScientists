@@ -13,20 +13,20 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel VerticalAlignment="Center">
-            <Label Content="Название оборудования"/>
-            <TextBox Text="{Binding Equipment.Name}"/>
-            <Label Content="Тип оборудования"/>
+            <Label Content="Название оборудования" FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Name}" FontSize="14"/>
+            <Label Content="Тип оборудования" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Types}"
                       SelectedItem="{Binding SelectType}"
-                      DisplayMemberPath="Title"/>
-            <Label Content="Ответственный за оборудование"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
+            <Label Content="Ответственный за оборудование" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Scientists}"
                       SelectedItem="{Binding SelectScientist}"
-                      DisplayMemberPath="Lastname"/>
-            <Label Content="Габариты"/>
-            <TextBox Text="{Binding Equipment.Dimansions}"/>
-            <Label Content="Вес (кг)"/>
-            <TextBox Text="{Binding Equipment.Weight}"/>
+                      DisplayMemberPath="Lastname" FontSize="14"/>
+            <Label Content="Габариты" FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Dimansions}" FontSize="14"/>
+            <Label Content="Вес (кг)" FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Weight}" FontSize="14"/>
             
         </StackPanel>
         <Button Command="{Binding Save}" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить"/>

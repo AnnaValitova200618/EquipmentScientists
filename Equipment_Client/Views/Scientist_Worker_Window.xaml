@@ -19,26 +19,26 @@
                     <ImageBrush ImageSource="/Image/back.png"/>
                 </Button.Background>
             </Button>
-            <Button Command="{Binding OpenListEquipment}">
+            <Button Command="{Binding OpenListEquipment}" Height="70" Cursor="Hand">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Реестр оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button  Command="{Binding OpenListBookingEquipment}" Width="208">
+            <Button  Command="{Binding OpenListBookingEquipment}" Height="100">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/list.png"/>
                     <TextBlock Text="Реестр бронирования оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenBookingEquipment}">
+            <Button Command="{Binding OpenBookingEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/booking1.png"/>
                     <TextBlock Text="Бронирование оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
         </StackPanel>
-        
-        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden"/>
+
+        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Background="#FFC1F7FD" BorderBrush="#FF585858" BorderThickness="5"/>
     </Grid>
 </Window>

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Equipment_Client"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="MainWindow.xaml" >
+             StartupUri="Splash.xaml" >
              
     
     
@@ -11,12 +11,40 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Blue" SecondaryColor="LightBlue" />
+                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="LightBlue" SecondaryColor="LightBlue" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="MyDictionary.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="Button" BasedOn="{StaticResource MaterialDesignFlatAccentBgButton}">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+                    <Style TargetType="Label" BasedOn="{StaticResource MaterialDesignLabel}">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    <!--<Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignFloatingHintComboBox}">
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>-->
+                    <!--<Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>-->
+                    <!--<Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
+                        <Setter Property="FontSize" Value="14"/>
+                    </Style>-->
+                    
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+
+            <!--<Style TargetType="Frame">
+                <Setter Property="Background" Value="#FFC1F7FD"/>
+                <Setter Property="BorderThickness" Value="5"/>
+                <Setter Property="BorderBrush" Value="#FF585858"/>
+            </Style>-->
         </ResourceDictionary>
-        
-        
+       
+
     </Application.Resources>
+    
 </Application>
+<!--MaterialDesignFlatAccentBgButton-->

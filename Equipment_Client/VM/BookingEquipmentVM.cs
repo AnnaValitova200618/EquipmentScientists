@@ -58,9 +58,16 @@ namespace Equipment_Client.VM
         public CustomCommand CleanForm { get; set; }
         public BookingEquipmentVM(Scientist scientist)
         {
-            Equipments = DBInstance.GetInstance().Equipment.Where(s=>s.IdStatus == 1 || s.IdStatus == 5 || s.IdStatus == 7 ).ToList();
-            Purposes = DBInstance.GetInstance().PurposeOfUses.ToList();
-
+            try
+            {
+                Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdStatus == 1 || s.IdStatus == 5 || s.IdStatus == 7).ToList();
+                Purposes = DBInstance.GetInstance().PurposeOfUses.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
             Save = new CustomCommand(() =>
             {
                 if(Booking.DateStart == null || Booking.DateEnd == null || 

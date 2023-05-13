@@ -39,11 +39,19 @@ namespace Equipment_Client.VM
         public CustomCommand Save { get; set; }
         public EditEquipmentVM(Equipment selectedEquipment, System.Windows.Window window)
         {
-            Equipment = selectedEquipment;
-            Types = DBInstance.GetInstance().Types.ToList();
-            Scientists = DBInstance.GetInstance().Scientists.Where(s=>s.IdPosition == 2).ToList();
-            SelectScientist = Equipment.IdReponsibleScientistsNavigation;
-            SelectType = Equipment.IdTypeNavigation;
+            try
+            {
+                Equipment = selectedEquipment;
+                Types = DBInstance.GetInstance().Types.ToList();
+                Scientists = DBInstance.GetInstance().Scientists.Where(s => s.IdPosition == 2).ToList();
+                SelectScientist = Equipment.IdReponsibleScientistsNavigation;
+                SelectType = Equipment.IdTypeNavigation;
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
 
             Save = new CustomCommand(() =>
             {

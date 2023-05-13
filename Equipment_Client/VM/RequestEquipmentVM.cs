@@ -29,8 +29,15 @@ namespace Equipment_Client.VM
         public List<Booking> ApproveBookings { get; set; }
         public RequestEquipmentVM(Scientist scientist)
         {
-            GetBookings(scientist);
-
+            try
+            {
+                GetBookings(scientist);
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
             
             Approve = new CustomCommand(() =>
             {

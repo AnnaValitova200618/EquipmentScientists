@@ -20,8 +20,8 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-            <DataGrid ItemsSource="{Binding Equipments}" CellEditEnding="Save" AutoGenerateColumns="False" CanUserAddRows="False">
+
+        <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Equipments}" CellEditEnding="Save" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="Габариты" Binding="{Binding Dimansions}"/>
@@ -66,16 +66,16 @@
 
             <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
                 <Label Content="Добавление нового оборудования" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"/>
-                <Label Content="Названние"/>
-                <TextBox Text="{Binding Equipment.Name}"/>
-                <Label Content="Габариты"/>
-                <TextBox Text="{Binding Equipment.Dimansions}"/>
-                <Label Content="Вес"/>
-                <TextBox Text="{Binding Equipment.Weight}"/>
-                <Label Content="Тип"/>
+            <Label Content="Названние"  FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Name}" FontSize="14"/>
+            <Label Content="Габариты"  FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Dimansions}" FontSize="14"/>
+            <Label Content="Вес"  FontWeight="Bold"/>
+            <TextBox Text="{Binding Equipment.Weight}" FontSize="14"/>
+            <Label Content="Тип"  FontWeight="Bold"/>
                 <ComboBox ItemsSource="{Binding Types}"
                       SelectedItem="{Binding SelectType}"
-                      DisplayMemberPath="Title"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
                 <Button Command="{Binding Add}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Добавить"/>
             </StackPanel>
        

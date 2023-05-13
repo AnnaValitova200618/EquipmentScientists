@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Equipment_Client.VM
 {
@@ -47,18 +48,36 @@ namespace Equipment_Client.VM
         }
         private void DoSearch()
         {
-            List<Booking> listBooking = GetBooking().Where(s => s.IdEquipmentNavigation.Name.Contains(Search)).ToList();
-            if (SelectPurposeOfUse != null)
+            try
             {
-                listBooking = listBooking.Where(s => s.IdPurposeOfUse == SelectPurposeOfUse.Id).ToList();
+                List<Booking> listBooking = GetBooking().Where(s => s.IdEquipmentNavigation.Name.Contains(Search)).ToList();
+                if (SelectPurposeOfUse != null)
+                {
+                    listBooking = listBooking.Where(s => s.IdPurposeOfUse == SelectPurposeOfUse.Id).ToList();
+                }
+                Bookings = listBooking;
             }
-            Bookings = listBooking;
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
         }
 
         public ListBookingEquipmentVM()
         {
-            GetBooking();
-            PurposeOfUses = DBInstance.GetInstance().PurposeOfUses.ToList();
+            try
+            {
+                GetBooking();
+                PurposeOfUses = DBInstance.GetInstance().PurposeOfUses.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
 
             Reset = new CustomCommand(() =>
             {

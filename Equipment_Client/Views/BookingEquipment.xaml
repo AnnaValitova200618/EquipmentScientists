@@ -8,7 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BookingEquipment">
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
@@ -16,21 +16,21 @@
 
         <StackPanel Margin="10" VerticalAlignment="Center">
             <Label Content="Бронирование" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
-            <Label Content="Название оборудования" />
+            <Label Content="Название оборудования" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Equipments}"
                       SelectedItem="{Binding SelectEquipment}"
-                      DisplayMemberPath="Name"/>
-            <Label Content="Ответственный за оборудование" />
-            <TextBox IsReadOnly="True" Text="{Binding FIO}"/>
-            <Label Content="Дата начала бронирования"/>
-            <DatePicker SelectedDate="{Binding Booking.DateStart}"/>
-            <Label Content="Дата конца бронирования"/>
-            <DatePicker SelectedDate="{Binding Booking.DateEnd}"/>
-            
-            <Label Content="Деятельность бронирования" />
+                      DisplayMemberPath="Name" FontSize="14"/>
+            <Label Content="Ответственный за оборудование" FontWeight="Bold"/>
+            <TextBox IsReadOnly="True" Text="{Binding FIO}" FontSize="14"/>
+            <Label Content="Дата начала бронирования" FontWeight="Bold" />
+            <DatePicker SelectedDate="{Binding Booking.DateStart}" FontSize="14"/>
+            <Label Content="Дата конца бронирования" FontWeight="Bold"/>
+            <DatePicker SelectedDate="{Binding Booking.DateEnd}" FontSize="14"/>
+
+            <Label Content="Деятельность бронирования" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Purposes}"
                       SelectedItem="{Binding SelectPurpose}"
-                      DisplayMemberPath="Title"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
             
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">

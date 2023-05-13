@@ -13,20 +13,20 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel  VerticalAlignment="Center">
-            <Label Content="Имя"/>
-            <TextBox Text="{Binding Scientist.Firstname}"/>
-            <Label Content="Отчество"/>
-            <TextBox Text="{Binding Scientist.Patronymic}"/>
-            <Label Content="Фамилия"/>
-            <TextBox Text="{Binding Scientist.Lastname}"/>
-            <Label Content="Должность"/>
+            <Label Content="Имя" FontWeight="Bold"/>
+            <TextBox Text="{Binding Scientist.Firstname}" FontSize="14"/>
+            <Label Content="Отчество" FontWeight="Bold"/>
+            <TextBox Text="{Binding Scientist.Patronymic}" FontSize="14"/>
+            <Label Content="Фамилия" FontWeight="Bold"/>
+            <TextBox Text="{Binding Scientist.Lastname}" FontSize="14"/>
+            <Label Content="Должность" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Positions}" 
                       SelectedItem="{Binding SelectPosition}" 
-                      DisplayMemberPath="Title"/>
-            <Label Content="Логин" Visibility="{Binding Visibility}"/>
-            <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}"/>
-            <Label Content="Пароль" Visibility="{Binding Visibility}"/>
-            <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
+            <Label Content="Логин" Visibility="{Binding Visibility}" FontWeight="Bold"/>
+            <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}" FontSize="14"/>
+            <Label Content="Пароль" Visibility="{Binding Visibility}" FontWeight="Bold"/>
+            <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}" FontSize="14"/>
         </StackPanel>
         <Button Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить" Command="{Binding Save}"/>
     </Grid>

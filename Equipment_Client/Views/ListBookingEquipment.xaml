@@ -27,19 +27,19 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
-            <Label Content="Поиск по названию:" />
-            <StackPanel Orientation="Horizontal" Background="#FFC1F7FD" Height="40">
-                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30"/>
+            <Label Content="Поиск по названию:" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal" >
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="210" FontSize="14"/>
                 <Image Height="30" Width="30" Source="/Image/search.png"/>
             </StackPanel>
             <Label>
                 <Label.Content>
-                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="227"/>
+                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="235" FontWeight="Bold"/>
                 </Label.Content>
             </Label>
             <ComboBox ItemsSource="{Binding PurposeOfUses}"
                       SelectedItem="{Binding SelectPurposeOfUse}"
-                      DisplayMemberPath="Title"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
             <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
         </StackPanel>
     </Grid>

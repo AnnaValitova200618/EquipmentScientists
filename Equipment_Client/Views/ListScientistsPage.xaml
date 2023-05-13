@@ -32,17 +32,17 @@
             </ListView.View>
         </ListView>
         <StackPanel Grid.Column="1" Background="#FF83EAEE">
-            <Label Content="Поиск:"/>
-            <StackPanel Orientation="Horizontal" Background="#FFC1F7FD" Height="40">
-                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="30"/>
+            <Label Content="Поиск:" FontWeight="Bold"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="14"/>
                 <Image Height="30" Width="30" Source="/Image/search.png"/>
             </StackPanel>
 
-            <Label Content="Сортировать по должности:"/>
+            <Label Content="Сортировать по должности:" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Positions}"
                       SelectedItem="{Binding SelectedPosition}"
-                      DisplayMemberPath="Title"/>
-            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
+                      DisplayMemberPath="Title" FontSize="14"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию"/>
         </StackPanel>
     </Grid>
 </Page>

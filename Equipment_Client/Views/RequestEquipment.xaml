@@ -18,14 +18,17 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
-            
-            <Label Content="Сортировать по:"/>
-            <Label Content="Деятельности бронирования"/>
-            <ComboBox/>
-            <Label Content="Оборудованию"/>
-            <ComboBox/>
+            <Label>
+                <Label.Content>
+                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="200" FontWeight="Bold"/>
+                </Label.Content>
+            </Label>
+            <ComboBox ItemsSource="{Binding PurposeOfUses}"
+                      SelectedItem="{Binding SelectPurposeOfUse}"
+                      DisplayMemberPath="Title" FontSize="14"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
         </StackPanel>
-        <DataGrid ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название оборудования" Binding="{Binding IdEquipmentNavigation.Name}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Научный работник" Binding="{Binding IdScientistNavigation.Lastname}" IsReadOnly="True"/>

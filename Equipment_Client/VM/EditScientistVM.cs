@@ -35,13 +35,22 @@ namespace Equipment_Client.VM
         public List<Position> Positions { get; set; }
         public EditScientistVM(Scientist selectscientist, Window window)
         {
-            Scientist = selectscientist;
-            SelectPosition = Scientist.IdPositionNavigation;
-            Positions = DBInstance.GetInstance().Positions.ToList();
-            if (Scientist.Id != 0)
+            try
             {
-                Visibility = Visibility.Collapsed;
+                Scientist = selectscientist;
+                SelectPosition = Scientist.IdPositionNavigation;
+                Positions = DBInstance.GetInstance().Positions.ToList();
+                if (Scientist.Id != 0)
+                {
+                    Visibility = Visibility.Collapsed;
+                }
             }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
             Save = new CustomCommand(() =>
             {
                 try

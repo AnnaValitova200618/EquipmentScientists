@@ -44,10 +44,18 @@ namespace Equipment_Client.VM
 
         public ResponsibleEquipmentVM(Scientist scientist)
         {
+            try
+            {
+                GetEquipments(scientist);
+                Types = DBInstance.GetInstance().Types.ToList();
+                Statuses = DBInstance.GetInstance().Statuses.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
             
-            GetEquipments(scientist);
-            Types = DBInstance.GetInstance().Types.ToList();
-            Statuses = DBInstance.GetInstance().Statuses.ToList();
             
             
             

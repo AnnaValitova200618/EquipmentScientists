@@ -1,15 +1,11 @@
-﻿<Window x:Class="Equipment_Client.MainWindow"
+﻿<Window x:Class="Equipment_Client.Splash"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Equipment_Client"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        x:Name="window"
-        Title="Авторизация" Height="450" Width="510" 
-        WindowStartupLocation="CenterScreen" 
-        Style="{DynamicResource MaterialDesignWindow}">
+        Title="Splash" Height="0" Width="0" Visibility="Collapsed" Loaded="Loaded1" WindowStyle="None">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,18 +16,17 @@
             <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="130" HorizontalAlignment="Left"/>
             <TextBlock FontSize="19" TextWrapping="Wrap" Width="360" Text="Тихоокенаский океанологический институ Дальневосточного отделения Российской академии наук" TextAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Width="490">
             <Label Content="Авторизация пользователя" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Height="60"/>
             <Label Content="Логин" FontSize="18"/>
-            <TextBox FontSize="18" Text="{Binding Login}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox FontSize="18" />
             <Label Content="Пароль" FontSize="18"/>
-            <PasswordBox FontSize="18" Name="password" Style="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}"/>
+            <PasswordBox FontSize="18"/>
         </StackPanel>
 
-        <Button Command="{Binding LoginL}" Content="Войти" FontSize="16" Width="132" Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand"/>
-            
-        
+        <Button  Content="Войти" FontSize="16" Width="132" Grid.Row="2"  HorizontalAlignment="Center" Cursor="Hand"/>
+
+
     </Grid>
-    
 </Window>

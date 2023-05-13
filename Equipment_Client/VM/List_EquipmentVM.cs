@@ -62,19 +62,37 @@ namespace Equipment_Client.VM
         public CustomCommand EditEquipment { get; set; }
         private void DoSearch()
         {
-            List<Equipment> equipments = DBInstance.GetInstance().Equipment.Where(s => s.Name.Contains(Search)).ToList();
-            if (SelectType != null)
+            try
             {
-                equipments = equipments.Where(s => s.IdType == SelectType.Id).ToList();
+                List<Equipment> equipments = DBInstance.GetInstance().Equipment.Where(s => s.Name.Contains(Search)).ToList();
+                if (SelectType != null)
+                {
+                    equipments = equipments.Where(s => s.IdType == SelectType.Id).ToList();
+                }
+                Equipments = equipments;
             }
-            Equipments = equipments;
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
         }
 
         public CustomCommand Reset { get; set; }
         public List_EquipmentVM()
         {
-            Equipments = CheckStatusEquipment.CheckStatus();
-            Types = DBInstance.GetInstance().Types.ToList();
+            try
+            {
+                Equipments = CheckStatusEquipment.CheckStatus();
+                Types = DBInstance.GetInstance().Types.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
             Reset = new CustomCommand(() =>
             {
                 SelectType = null;
