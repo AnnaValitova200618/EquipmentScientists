@@ -26,7 +26,7 @@
             <ComboBox ItemsSource="{Binding PurposeOfUses}"
                       SelectedItem="{Binding SelectPurposeOfUse}"
                       DisplayMemberPath="Title" FontSize="14"/>
-            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Cursor="Hand" />
         </StackPanel>
         <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>

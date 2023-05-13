@@ -11,9 +11,11 @@ namespace Equipment_Client.DB
         private static EquipmentContext instance;
         public static EquipmentContext GetInstance()
         {
-            if(instance == null)
+            if (instance == null)
                 instance = new EquipmentContext();
             return instance;
+
+
         }
     }
 }
