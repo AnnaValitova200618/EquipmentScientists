@@ -70,20 +70,23 @@ namespace Equipment_Client.VM
             }
             Save = new CustomCommand(() =>
             {
+                DateTime interval = new DateTime();
+                interval.AddDays(7);
+
                 if(Booking.DateStart == null || Booking.DateEnd == null || 
                    SelectEquipment == null || SelectPurpose == null)
                 {
                     MessageBox.Show("Не все данные заполнены");
                     return;
                 }
-                if((Booking.DateEnd).Day < (Booking.DateStart).Day)
+                if((Booking.DateEnd).DayOfYear < (Booking.DateStart).DayOfYear)
                 {
                     MessageBox.Show("Дата начала бронирования не может быть больше даты окончания бронирования");
                     return;
                 }
-                if(Booking.DateStart.Date < DateTime.Now.Date)
+                if((Booking.DateEnd).DayOfYear - DateTime.Now.DayOfYear < interval.DayOfYear)
                 {
-                    MessageBox.Show("Дата начала бронирования не актуальна");
+                    MessageBox.Show("Дата начала бронирования должна быть больше сегодняшней даты на неделю");
                     return;
                 }
                 try

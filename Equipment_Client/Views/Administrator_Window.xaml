@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Equipment_Client.Views"
         x:Name="Window"
         mc:Ignorable="d"
-        Title="Scientists_Window" MinHeight="550" MinWidth="900" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="Окно администратора" MinHeight="550" MinWidth="900" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>

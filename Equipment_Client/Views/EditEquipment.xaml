@@ -6,13 +6,13 @@
         xmlns:local="clr-namespace:Equipment_Client.Views"
         mc:Ignorable="d"
         x:Name="window"
-        Title="EditEquipment" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Редактирование оборудования" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid Background="#FFC1F7FD">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center" Margin="10">
             <Label Content="Название оборудования" FontWeight="Bold"/>
             <TextBox Text="{Binding Equipment.Name}" FontSize="14"/>
             <Label Content="Тип оборудования" FontWeight="Bold"/>
@@ -29,6 +29,6 @@
             <TextBox Text="{Binding Equipment.Weight}" FontSize="14"/>
             
         </StackPanel>
-        <Button Command="{Binding Save}" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить"/>
+        <Button Width="200" Command="{Binding Save}" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить"/>
     </Grid>
 </Window>

@@ -30,7 +30,7 @@ namespace Equipment_Client.VM
         public List<Status> Statuses { get; set; }
         public string Status { get; set; }
         public CustomCommand Add { get; set; }
-        
+        public CustomCommand CleanForm { get; set; }
         public List<Equipment> Equipments
         {
             get => equipments;
@@ -55,10 +55,16 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
-            
-            
-            
+
+            CleanForm = new CustomCommand(() =>
+            {
+                Equipment = new();
+                SelectType = null;
+                Signal(nameof(SelectType));
+                Signal(nameof(Equipment));
+                return;
+            });
+
             Add = new CustomCommand(() =>
             {
                 try
@@ -77,6 +83,7 @@ namespace Equipment_Client.VM
                     DBInstance.GetInstance().Equipment.Add(Equipment);
                     DBInstance.GetInstance().SaveChanges();
                     GetEquipments(scientist);
+                    CleanForm.Execute(null);
                 }
                 catch
                 {

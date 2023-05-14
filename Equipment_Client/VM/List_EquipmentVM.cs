@@ -64,6 +64,7 @@ namespace Equipment_Client.VM
         {
             try
             {
+
                 List<Equipment> equipments = DBInstance.GetInstance().Equipment.Where(s => s.Name.Contains(Search)).ToList();
                 if (SelectType != null)
                 {

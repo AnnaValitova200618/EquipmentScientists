@@ -23,12 +23,6 @@
         </Style.Triggers>
     </Style>
 
-    <!--<! - Толщина внешней границы таблицы, как правило, не изменяется->--><!--
-    <Thickness x:Key="DataGrid.BorderThickness" Bottom="1" Left="1" Right="1" Top="1" />
-    --><!--<! - Толщина заголовка столбца обычно не изменяется->--><!--
-    <Thickness x:Key="ColumnHeader.BorderThickness" Bottom="0" Left="0" Right="1" Top="0" />
-    --><!--<! - Толщина границы линии, как правило, не изменяется->--><!--
-    <Thickness x:Key="DataGridRow.BorderThickness" Bottom="0" Left="0" Right="0" Top="1" />-->
 
     <!--<! - Цвет внешней границы таблицы->-->
     <SolidColorBrush x:Key="DataGrid.BorderBrush" Color="LightBlue" />
@@ -52,15 +46,11 @@
     <SolidColorBrush x:Key="DataGridRow.Selected.Foreground" Color="#000000" />
 
     <Style TargetType="DataGrid">
-        <!--<Setter Property="RowHeaderWidth" Value="0" />-->
-        <!--<Setter Property="BorderThickness" Value="{StaticResource DataGrid.BorderThickness}" />-->
-        <!--<Setter Property="HeadersVisibility" Value="Column" />-->
         <Setter Property="Background" Value="{StaticResource ColumnHeader.Background}" />
         <Setter Property="BorderBrush" Value="{StaticResource DataGrid.BorderBrush}" />
         <Setter Property="HorizontalGridLinesBrush" Value="#00E9ECF1" />
         <Setter Property="VerticalGridLinesBrush" Value="#00E9ECF1" />
         <Setter Property="RowHeight" Value="{StaticResource DataGridRow.Height}" />
-        
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FontSize" Value="16"/>
     </Style>
@@ -69,7 +59,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
-                    <Border x:Name="Bg" Background="Transparent" >
+                    <Border  Background="Transparent" >
                         <ContentPresenter />
                     </Border>
                 </ControlTemplate>
@@ -83,5 +73,5 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    
+   
 </ResourceDictionary>

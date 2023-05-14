@@ -19,6 +19,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Equipments}" CellEditEnding="Save" AutoGenerateColumns="False" CanUserAddRows="False">
@@ -76,11 +77,11 @@
                 <ComboBox ItemsSource="{Binding Types}"
                       SelectedItem="{Binding SelectType}"
                       DisplayMemberPath="Title" FontSize="14"/>
-                <Button Command="{Binding Add}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Content="Добавить"/>
+                
             </StackPanel>
-       
-        
-       
-
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Width="200" Command="{Binding Add}" Content="Добавить"/>
+            <Button Content="Очистить форму" Width="200" Command="{Binding CleanForm}"/>
+        </StackPanel>
     </Grid>
 </Page>

@@ -24,7 +24,7 @@ namespace Equipment_Client.Views
         public Diagramm(Models.Scientist scientist)
         {
             InitializeComponent();
-            DataContext = new DiagrammVM();
+            DataContext = new DiagrammVM(scientist);
         }
     }
 }

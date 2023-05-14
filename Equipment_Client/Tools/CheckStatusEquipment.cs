@@ -20,7 +20,7 @@ namespace Equipment_Client.Tools
                 (s.DateStart < DateTime.Now.Date && s.DateEnd >= DateTime.Now.Date))
                 .OrderBy(s=>s.DateStart).ToList(); //актуальные заявки
 
-            var listEquipment = DBInstance.GetInstance().Equipment
+            var listEquipment = DBInstance.GetInstance().Equipment.Include(s=>s.IdStatusNavigation)
                 .Where(s=>s.IdStatus == 5 || s.IdStatus == 7 || s.IdStatus == 1 ).ToList();
 
             for (int i = 0; i < listEquipment.Count; i++)
@@ -31,12 +31,12 @@ namespace Equipment_Client.Tools
                     listEquipment[i].IdStatus = 1;
                     continue;
                 }
-                if (approvedBooking.DateStart <= DateTime.Now.Date)
+                if (approvedBooking.DateStart.Date <= DateTime.Now.Date)
                 {
                     approvedBooking.IdEquipmentNavigation.IdStatus = 7;
                     approvedBooking.IdEquipmentNavigation.IdStatusNavigation = DBInstance.GetInstance().Statuses.Find(7);
                 }
-                if (approvedBooking.DateStart > DateTime.Now.Date)
+                if (approvedBooking.DateStart.Date > DateTime.Now.Date)
                 {
                     approvedBooking.IdEquipmentNavigation.IdStatus = 5;
                     approvedBooking.IdEquipmentNavigation.IdStatusNavigation = DBInstance.GetInstance().Statuses.Find(5);
