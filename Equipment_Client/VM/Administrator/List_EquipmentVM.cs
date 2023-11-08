@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Administrator
 {
     public class List_EquipmentVM : BaseVM
     {
@@ -38,7 +38,7 @@ namespace Equipment_Client.VM
 
             }
         }
-        public Equipment SelectedEquipment 
+        public Equipment SelectedEquipment
         {
             get => selectedEquipment;
             set
@@ -77,7 +77,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
+
         }
 
         public CustomCommand Reset { get; set; }
@@ -93,7 +93,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
+
             Reset = new CustomCommand(() =>
             {
                 SelectType = null;
@@ -106,7 +106,7 @@ namespace Equipment_Client.VM
             });
             EditEquipment = new CustomCommand(() =>
             {
-                if(SelectedEquipment == null)
+                if (SelectedEquipment == null)
                 {
                     MessageBox.Show("Необходимо выбрать оборудование");
                     return;

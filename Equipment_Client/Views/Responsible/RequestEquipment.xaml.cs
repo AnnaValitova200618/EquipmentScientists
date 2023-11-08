@@ -1,4 +1,5 @@
 ﻿using Equipment_Client.VM;
+using Equipment_Client.VM.Responsible;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ using System.Windows.Shapes;
 namespace Equipment_Client.Views
 {
     /// <summary>
-    /// Логика взаимодействия для List_Equipment.xaml
+    /// Логика взаимодействия для RequestEquipment.xaml
     /// </summary>
-    public partial class List_Equipment : Page
+    public partial class RequestEquipment : Page
     {
-        public List_Equipment()
+        public RequestEquipment(Models.Scientist scientist)
         {
             InitializeComponent();
-            DataContext = new List_EquipmentVM();
+            DataContext = new RequestEquipmentVM(scientist);
         }
     }
 }

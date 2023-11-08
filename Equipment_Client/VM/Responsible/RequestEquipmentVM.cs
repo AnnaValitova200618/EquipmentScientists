@@ -9,14 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Responsible
 {
     public class RequestEquipmentVM : BaseVM
     {
         private List<Booking> bookings;
 
         public CustomCommand Approve { get; set; }
-        public List<Booking> Bookings 
+        public List<Booking> Bookings
         {
             get => bookings;
             set
@@ -25,7 +25,7 @@ namespace Equipment_Client.VM
                 Signal();
             }
         }
-        
+
         public List<Booking> ApproveBookings { get; set; }
         public RequestEquipmentVM(Scientist scientist)
         {
@@ -38,7 +38,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
+
             Approve = new CustomCommand(() =>
             {
 
@@ -61,7 +61,7 @@ namespace Equipment_Client.VM
                                 if (booking1.IdEquipment == booking2.IdEquipment && booking1.Id != booking2.Id)
                                 {
                                     if (!(booking1.DateStart > booking2.DateEnd || booking1.DateEnd < booking2.DateStart))// сравниваем
-                                                                                                         // даты для обнаружения пересечений
+                                                                                                                          // даты для обнаружения пересечений
                                     {
                                         wrongBooking.Add(booking1);
                                         wrongBooking.Add(booking2);
@@ -78,17 +78,17 @@ namespace Equipment_Client.VM
                         }
                         wrongBooking.ForEach(s => s.ApprovedID = false);//обнуляем статусы тем, у чего были проставлены галочки,
                                                                         //но они не подошли
-                        if(wrongBooking.Count() == 0)
+                        if (wrongBooking.Count() == 0)
                         {
                             MessageBox.Show("Все заявки одобрены");
-                            
+
                         }
-                        if(wrongBooking.Count() > 0)
+                        if (wrongBooking.Count() > 0)
                         {
                             MessageBox.Show("Часть заявок были не одобрены");
                         }
                     }
-                   
+
                     DBInstance.GetInstance().SaveChanges();
                     GetBookings(scientist);
                 }

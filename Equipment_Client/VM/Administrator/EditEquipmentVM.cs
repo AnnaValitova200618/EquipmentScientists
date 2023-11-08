@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Administrator
 {
     public class EditEquipmentVM : BaseVM
     {
@@ -26,7 +26,7 @@ namespace Equipment_Client.VM
             }
         }
         public List<Models.Type> Types { get; set; }
-        public Models.Type SelectType 
+        public Models.Type SelectType
         {
             get => selectType;
             set
@@ -37,7 +37,7 @@ namespace Equipment_Client.VM
         }
         public Equipment Equipment { get; set; }
         public CustomCommand Save { get; set; }
-        public EditEquipmentVM(Equipment selectedEquipment, System.Windows.Window window)
+        public EditEquipmentVM(Equipment selectedEquipment, Window window)
         {
             try
             {
@@ -55,8 +55,8 @@ namespace Equipment_Client.VM
 
             Save = new CustomCommand(() =>
             {
-                if(string.IsNullOrEmpty(Equipment.Name)|| 
-                   string.IsNullOrEmpty(Equipment.Dimansions) || 
+                if (string.IsNullOrEmpty(Equipment.Name) ||
+                   string.IsNullOrEmpty(Equipment.Dimansions) ||
                    string.IsNullOrEmpty(Equipment.Weight) ||
                    SelectScientist == null ||
                    SelectType == null)

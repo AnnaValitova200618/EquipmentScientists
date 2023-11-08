@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Administrator
 {
     public class EditScientistVM : BaseVM
     {
@@ -50,7 +50,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
+
             Save = new CustomCommand(() =>
             {
                 try

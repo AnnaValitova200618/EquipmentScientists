@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Responsible
 {
     public class ResponsibleEquipmentVM : BaseVM
     {
@@ -18,7 +18,7 @@ namespace Equipment_Client.VM
         private Models.Type selectType;
 
         public List<Models.Type> Types { get; set; }
-        public Models.Type SelectType 
+        public Models.Type SelectType
         {
             get => selectType;
             set
@@ -90,7 +90,7 @@ namespace Equipment_Client.VM
                     MessageBox.Show("Проблемы с БД");
                 }
             });
-            
+
         }
 
         public void Save(DataGridCellEditEndingEventArgs e)
@@ -105,7 +105,7 @@ namespace Equipment_Client.VM
         {
             return Equipments = CheckStatusEquipment.CheckStatus()
                 .Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-                
+
         }
     }
 }

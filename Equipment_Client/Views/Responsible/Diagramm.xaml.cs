@@ -1,4 +1,5 @@
 ﻿using Equipment_Client.VM;
+using Equipment_Client.VM.Responsible;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,23 +18,14 @@ using System.Windows.Shapes;
 namespace Equipment_Client.Views
 {
     /// <summary>
-    /// Логика взаимодействия для ResponsibleEquipment.xaml
+    /// Логика взаимодействия для Diagramm.xaml
     /// </summary>
-    public partial class ResponsibleEquipment : Page
+    public partial class Diagramm : Page
     {
-        ResponsibleEquipmentVM vm;
-        public ResponsibleEquipment(Models.Scientist scientist)
+        public Diagramm(Models.Scientist scientist)
         {
             InitializeComponent();
-            vm = new ResponsibleEquipmentVM(scientist);
-            DataContext = vm;
+            DataContext = new DiagrammVM(scientist);
         }
-
-        private void Save(object sender, DataGridCellEditEndingEventArgs e)
-        {
-            vm.Save(e);
-        }
-
-        
     }
 }

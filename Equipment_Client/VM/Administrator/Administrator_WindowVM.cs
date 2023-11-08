@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Administrator
 {
     public class Administrator_WindowVM : BaseVM
     {
         private Page currentPage;
-        public Page CurrentPage 
+        public Page CurrentPage
         {
             get => currentPage;
             set
@@ -26,6 +26,7 @@ namespace Equipment_Client.VM
         public CustomCommand Back { get; set; }
         public CustomCommand OpenScientists { get; set; }
         public CustomCommand OpenEquipment { get; set; }
+        public CustomCommand OpenProfile { get; set; }
         public Administrator_WindowVM(Window window, Scientist scientist)
         {
             CurrentPage = new ListScientistsPage();
@@ -43,6 +44,7 @@ namespace Equipment_Client.VM
             {
                 CurrentPage = new ListEquipmentPage();
             });
+            
         }
     }
 }

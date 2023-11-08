@@ -1,4 +1,6 @@
-﻿using Equipment_Client.VM;
+﻿using Equipment_Client.Models;
+using Equipment_Client.VM;
+using Equipment_Client.VM.Administrator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +13,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Equipment_Client.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EditEquipment.xaml
+    /// Логика взаимодействия для ListScientistsPage.xaml
     /// </summary>
-    public partial class EditEquipment : Window
+    public partial class ListScientistsPage : Page
     {
-        public EditEquipment(Models.Equipment selectedEquipment)
+        public ListScientistsPage()
         {
             InitializeComponent();
-            DataContext = new EditEquipmentVM(selectedEquipment, window);
+            DataContext = new ListScientistsVM();
         }
     }
 }

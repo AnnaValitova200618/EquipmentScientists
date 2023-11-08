@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Administrator
 {
     public class ListScientistsVM : BaseVM
     {
@@ -29,7 +29,7 @@ namespace Equipment_Client.VM
                 DoSearch();
             }
         }
-        public string Search 
+        public string Search
         {
             get => search;
             set
@@ -65,13 +65,13 @@ namespace Equipment_Client.VM
             try
             {
                 var scientists = DBInstance.GetInstance().Scientists.
-                    Where(s=>s.Firstname.Contains(Search) || 
-                             s.Patronymic.Contains(Search) || 
-                             s.Lastname.Contains(Search) || 
+                    Where(s => s.Firstname.Contains(Search) ||
+                             s.Patronymic.Contains(Search) ||
+                             s.Lastname.Contains(Search) ||
                              s.Login.Contains(Search)).ToList();
-                if(SelectedPosition != null)
+                if (SelectedPosition != null)
                 {
-                    scientists = scientists.Where(s=>s.IdPosition == SelectedPosition.Id).ToList();
+                    scientists = scientists.Where(s => s.IdPosition == SelectedPosition.Id).ToList();
                 }
                 Scientists = scientists;
             }
@@ -80,7 +80,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-           
+
         }
         public ListScientistsVM()
         {
@@ -94,7 +94,7 @@ namespace Equipment_Client.VM
                 MessageBox.Show("Проблема с БД");
                 return;
             }
-            
+
 
             RemoveUser = new CustomCommand(() =>
             {

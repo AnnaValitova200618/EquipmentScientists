@@ -1,4 +1,5 @@
 ﻿using Equipment_Client.VM;
+using Equipment_Client.VM.Responsible;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,14 +17,14 @@ using System.Windows.Shapes;
 namespace Equipment_Client.Views
 {
     /// <summary>
-    /// Логика взаимодействия для EditScientist.xaml
+    /// Логика взаимодействия для Responsible_Window.xaml
     /// </summary>
-    public partial class EditScientist : Window
+    public partial class Responsible_Window : Window
     {
-        public EditScientist(Models.Scientist selectscientist)
+        public Responsible_Window(Models.Scientist scientist)
         {
             InitializeComponent();
-            DataContext = new EditScientistVM(selectscientist, window);
+            DataContext = new ResponsibleWindowVM(scientist, Window);
         }
     }
 }

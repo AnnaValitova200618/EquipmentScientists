@@ -9,7 +9,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Responsible
 {
     public class DiagrammVM : BaseVM
     {

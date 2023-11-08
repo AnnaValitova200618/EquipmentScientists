@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace Equipment_Client.VM
+namespace Equipment_Client.VM.Responsible
 {
     public class ResponsibleWindowVM : BaseVM
     {
