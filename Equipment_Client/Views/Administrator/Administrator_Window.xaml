@@ -13,11 +13,10 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel>
-            <Button HorizontalAlignment="Left" Style="{StaticResource Back}" Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Image/back.png"/>
-                </Button.Background>
-            </Button>
+            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
+                <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
+                <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
+            </StackPanel>
             <Button Command="{Binding OpenScientists}" Height="60">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/users.png"/>
@@ -30,10 +29,18 @@
                     <TextBlock Text="Оборудование" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenEquipment}" Height="60">
+            <!--<Button Command="{Binding OpenEquipment}" Height="60">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/user.png"/>
                     <TextBlock Text="Профиль" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
+                </StackPanel>
+            </Button>-->
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" >
+            <Button  Command="{Binding Back}" Height="50">
+                <StackPanel Orientation="Horizontal" Width="195">
+                    <Image Width="35" Height="35"  Source="/Image/exit.png"/>
+                    <TextBlock Text="Выход" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
         </StackPanel>

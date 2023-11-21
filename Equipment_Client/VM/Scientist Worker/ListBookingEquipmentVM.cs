@@ -16,7 +16,7 @@ namespace Equipment_Client.VM
         private PurposeOfUse selectPurposeOfUse;
         private string search = "";
         private List<Booking> bookings;
-
+        public string fio { get; set; }
         public CustomCommand Reset { get; set; }
         public List<Booking> Bookings 
         {
@@ -69,8 +69,16 @@ namespace Equipment_Client.VM
         {
             try
             {
+                
                 GetBooking();
                 PurposeOfUses = DBInstance.GetInstance().PurposeOfUses.ToList();
+
+                foreach (Booking booking in Bookings)
+                {
+                    fio = $"{booking.IdScientistNavigation.Lastname} {booking.IdScientistNavigation.Firstname.Split()} {booking.IdScientistNavigation.Patronymic}";
+                    booking.IdScientistNavigation.FIO = fio;
+                }
+                GetBooking();
             }
             catch
             {
@@ -90,7 +98,7 @@ namespace Equipment_Client.VM
         {
             return Bookings = DBInstance.GetInstance().Bookings
                             .Include(s => s.IdPurposeOfUseNavigation)
-                            .Include(s => s.IdEquipmentNavigation.IdReponsibleScientistsNavigation)
+                            .Include(s => s.IdScientistNavigation)
                             .Where(s => s.Approved == 1 && s.DateEnd >= DateTime.Now.Date).ToList();
         }
     }

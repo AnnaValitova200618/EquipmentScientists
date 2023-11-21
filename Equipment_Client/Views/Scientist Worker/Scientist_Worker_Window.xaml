@@ -7,28 +7,28 @@
         mc:Ignorable="d"
         x:Name="Window"
         Title="Окно научного работника" MinHeight="550" MinWidth="900" Width="1200" WindowStartupLocation="CenterScreen" WindowState="Maximized">
-    <Grid>
+    <Grid >
        
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <Button HorizontalAlignment="Left" Style="{StaticResource Back}" Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Image/back.png"/>
-                </Button.Background>
-            </Button>
-            <Button Command="{Binding OpenListEquipment}" Height="70" Cursor="Hand">
+            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
+                <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
+                <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
+            </StackPanel>
+
+            <Button Command="{Binding OpenListEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Реестр оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button  Command="{Binding OpenListBookingEquipment}" Height="100">
+            <Button  Command="{Binding OpenListBookingEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/list.png"/>
-                    <TextBlock Text="Реестр бронирования оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
+                    <TextBlock Text="Реестр бронирования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
             <Button Command="{Binding OpenBookingEquipment}" Height="70">
@@ -38,7 +38,22 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-
+        <StackPanel VerticalAlignment="Bottom" Margin="6" Orientation="Horizontal" >
+            <Button  Command="{Binding Back}" Height="50">
+                <StackPanel Orientation="Horizontal" Width="195">
+                    <Image Width="35" Height="35"  Source="/Image/exit.png"/>
+                    <TextBlock Text="Выход" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
         <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Background="#FFC1F7FD" BorderBrush="#FF585858" BorderThickness="5"/>
     </Grid>
 </Window>
+
+
+<!--<Button HorizontalAlignment="Left" Style="{StaticResource Back}" Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Image/exit.png"/>
+                </Button.Background>
+            </Button>
+            <Label Content="Выход" VerticalAlignment="Center"/>-->

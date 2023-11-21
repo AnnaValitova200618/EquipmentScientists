@@ -12,6 +12,7 @@
     <None Remove="Image\back.png" />
     <None Remove="Image\book.png" />
     <None Remove="Image\booking1.png" />
+    <None Remove="Image\exit.png" />
     <None Remove="Image\list.png" />
     <None Remove="Image\pie.png" />
     <None Remove="Image\search.png" />
@@ -33,6 +34,9 @@
 
   <ItemGroup>
     <Resource Include="Image\booking1.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\exit.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\list.png">

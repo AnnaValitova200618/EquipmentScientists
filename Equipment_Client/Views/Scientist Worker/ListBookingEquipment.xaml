@@ -19,7 +19,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название" DisplayMemberBinding="{Binding IdEquipmentNavigation.Name}"/>
-                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdEquipmentNavigation.IdReponsibleScientistsNavigation.Lastname}"/>
+                    <GridViewColumn Header="Бронь" DisplayMemberBinding="{Binding IdScientistNavigation.FIO}"/>
                     <GridViewColumn Header="Деятельность бронирования" DisplayMemberBinding="{Binding IdPurposeOfUseNavigation.Title}"/>
                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding DateStart, StringFormat=dd.MM.yy}"/>
                     <GridViewColumn Header="Дата окончания" DisplayMemberBinding="{Binding DateEnd, StringFormat=dd.MM.yy}"/>
@@ -40,7 +40,7 @@
             <ComboBox ItemsSource="{Binding PurposeOfUses}"
                       SelectedItem="{Binding SelectPurposeOfUse}"
                       DisplayMemberPath="Title" FontSize="14"/>
-            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Background="#FFC1F7FD"/>
+            <Button Command="{Binding Reset}" Content="Сбросить фильтрацию"/>
         </StackPanel>
     </Grid>
 </Page>

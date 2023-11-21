@@ -32,7 +32,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE">
             <Label Content="Поиск:" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="14"/>

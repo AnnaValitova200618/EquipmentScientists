@@ -14,27 +14,34 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
-            <Button Style="{StaticResource Back}" HorizontalAlignment="Left"  Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Image/back.png"/>
-                </Button.Background>
-            </Button>
-            <Button Command="{Binding OpenResponsibleEquipment}" Height="60">
-                <StackPanel Orientation="Horizontal" Width="220">
+            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
+                <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
+                <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
+            </StackPanel>
+            <Button Command="{Binding OpenResponsibleEquipment}" Height="70">
+                <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Оборудование" Margin="6" VerticalAlignment="Center" FontWeight="Bold" FontSize="18"/>
                 </StackPanel>
             </Button>
             <Button Command="{Binding OpenRequestEquipment}" Height="70">
-                <StackPanel Orientation="Horizontal" Width="220">
+                <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/booking1.png"/>
                     <TextBlock Text="Запросы на бронирование" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="145" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenDiagramm}" Height="100">
-                <StackPanel Orientation="Horizontal" Width="227">
+            <Button Command="{Binding OpenDiagramm}" Height="70">
+                <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/pie.png"/>
-                    <TextBlock Text="Диаграмма востребованности оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="175" />
+                    <TextBlock Text="Диаграмма" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="145" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Margin="6" Orientation="Horizontal" >
+            <Button  Command="{Binding Back}" Height="50">
+                <StackPanel Orientation="Horizontal" Width="195">
+                    <Image Width="35" Height="35"  Source="/Image/exit.png"/>
+                    <TextBlock Text="Выход" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
         </StackPanel>
