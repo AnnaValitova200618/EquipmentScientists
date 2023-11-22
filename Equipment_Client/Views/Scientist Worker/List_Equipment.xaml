@@ -48,6 +48,11 @@
         </Grid.ColumnDefinitions>
 
         <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Equipments}" ItemContainerStyle="{StaticResource container}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Забронировать" Command="{Binding Booking}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Название оборудования" DisplayMemberBinding="{Binding Name}" />

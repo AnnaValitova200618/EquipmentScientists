@@ -60,6 +60,7 @@ namespace Equipment_Client.VM.Administrator
         public CustomCommand AddEquipment { get; set; }
         public CustomCommand RemoveEquipment { get; set; }
         public CustomCommand EditEquipment { get; set; }
+        public CustomCommand Booking { get; set; }
         private void DoSearch()
         {
             try
@@ -81,7 +82,7 @@ namespace Equipment_Client.VM.Administrator
         }
 
         public CustomCommand Reset { get; set; }
-        public List_EquipmentVM()
+        public List_EquipmentVM(Scientist_WorkerVM scientist_WorkerVM, Scientist scientist)
         {
             try
             {
@@ -94,11 +95,17 @@ namespace Equipment_Client.VM.Administrator
                 return;
             }
 
+            Booking = new CustomCommand(() =>
+            {
+                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist);
+            });
+
             Reset = new CustomCommand(() =>
             {
                 SelectType = null;
                 Signal(nameof(SelectType));
             });
+
             AddEquipment = new CustomCommand(() =>
             {
                 new EditEquipment(new Equipment()).ShowDialog();

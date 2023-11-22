@@ -5,6 +5,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
@@ -39,9 +40,9 @@ namespace Equipment_Client.VM.Responsible
             try
             {
                 Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-
+                
                 Labels = new string[] { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
-                YFormatter = value => value.ToString("N");
+                YFormatter = value => value.ToString("0");
 
                 Sort = new CustomCommand(() =>
                 {
@@ -74,6 +75,7 @@ namespace Equipment_Client.VM.Responsible
                             PointGeometry = DefaultGeometries.Square,
                             PointGeometrySize = 15,
                             Fill = Brushes.Transparent
+                            
                         },
 
                     };

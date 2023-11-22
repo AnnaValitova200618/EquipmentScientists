@@ -1,4 +1,6 @@
-﻿using Equipment_Client.VM;
+﻿using Equipment_Client.DB;
+using Equipment_Client.Tools;
+using Equipment_Client.VM;
 using System;
 using System.Collections.Generic;
 using System.Linq;

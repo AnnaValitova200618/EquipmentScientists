@@ -22,10 +22,10 @@ namespace Equipment_Client.Views
     /// </summary>
     public partial class List_Equipment : Page
     {
-        public List_Equipment()
+        public List_Equipment(Scientist_WorkerVM scientist_WorkerVM, Models.Scientist scientist)
         {
             InitializeComponent();
-            DataContext = new List_EquipmentVM();
+            DataContext = new List_EquipmentVM(scientist_WorkerVM, scientist);
         }
     }
 }

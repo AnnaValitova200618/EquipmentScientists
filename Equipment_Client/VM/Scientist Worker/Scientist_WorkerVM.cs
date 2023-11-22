@@ -29,11 +29,11 @@ namespace Equipment_Client.VM
 
         public Scientist_WorkerVM(System.Windows.Window window, Models.Scientist scientist)
         {
-            CurrentPage = new List_Equipment();
+            CurrentPage = new List_Equipment(this, scientist);
 
             OpenListEquipment = new CustomCommand(() =>
             {
-                CurrentPage = new List_Equipment();
+                CurrentPage = new List_Equipment(this, scientist);
             });
             OpenListBookingEquipment = new CustomCommand(() =>
             {

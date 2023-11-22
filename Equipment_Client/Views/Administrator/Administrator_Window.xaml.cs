@@ -21,10 +21,12 @@ namespace Equipment_Client.Views
     /// </summary>
     public partial class Administrator_Window : Window
     {
+        public Scientist_WorkerVM scientist_WorkerVM;
         public Administrator_Window(Models.Scientist scientist)
         {
+            
             InitializeComponent();
-            DataContext = new Administrator_WindowVM(Window, scientist);
+            DataContext = new Administrator_WindowVM(Window, scientist, scientist_WorkerVM);
         }
     }
 }

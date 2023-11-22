@@ -27,7 +27,7 @@ namespace Equipment_Client.VM.Administrator
         public CustomCommand OpenScientists { get; set; }
         public CustomCommand OpenEquipment { get; set; }
         public CustomCommand OpenProfile { get; set; }
-        public Administrator_WindowVM(Window window, Scientist scientist)
+        public Administrator_WindowVM(Window window, Scientist scientist, Scientist_WorkerVM scientist_WorkerVM)
         {
             CurrentPage = new ListScientistsPage();
 
@@ -42,7 +42,7 @@ namespace Equipment_Client.VM.Administrator
             });
             OpenEquipment = new CustomCommand(() =>
             {
-                CurrentPage = new ListEquipmentPage();
+                CurrentPage = new ListEquipmentPage(scientist_WorkerVM, scientist);
             });
             
         }
