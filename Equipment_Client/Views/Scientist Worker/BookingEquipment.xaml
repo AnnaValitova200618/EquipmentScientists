@@ -17,9 +17,10 @@
         <StackPanel Margin="10" VerticalAlignment="Center">
             <Label Content="Бронирование" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center"/>
             <Label Content="Название оборудования" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Equipments}"
+            <!--<ComboBox ItemsSource="{Binding Equipments}"
                       SelectedItem="{Binding SelectEquipment}"
-                      DisplayMemberPath="Name" FontSize="14"/>
+                      DisplayMemberPath="Name" FontSize="14"/>-->
+            <TextBox IsReadOnly="True" Text="{Binding Booking.IdEquipmentNavigation.Name}" FontSize="14"/>
             <Label Content="Ответственный за оборудование" FontWeight="Bold"/>
             <TextBox IsReadOnly="True" Text="{Binding FIO}" FontSize="14"/>
             <Label Content="Дата начала бронирования" FontWeight="Bold" />

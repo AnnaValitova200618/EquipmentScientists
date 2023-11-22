@@ -20,6 +20,7 @@ namespace Equipment_Client.VM.Responsible
         public CustomCommand Sort { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public string[] Labels { get; set; }
+        public int MaxVal { get; set; }
 
         public List<Equipment> Equipments { get; set; }
         public Equipment SelectEquipment
@@ -88,6 +89,7 @@ namespace Equipment_Client.VM.Responsible
                             PointGeometrySize = 15,
                             Fill = Brushes.Transparent
                         });
+                        
                         Signal(nameof(SeriesViews));
                     }
                 });

@@ -17,33 +17,33 @@ namespace Equipment_Client.VM
         public Booking Booking { get; set; } = new();
         public Scientist Scientist { get; set; }
         public string FIO { get; set; }
-        public List<Equipment> Equipments { get; set; }
-        public Equipment SelectEquipment
-        {
-            get => selectEquipment;
-            set
-            {
+        //public List<Equipment> Equipments { get; set; }
+        //public Equipment SelectEquipment
+        //{
+        //    get => selectEquipment;
+        //    set
+        //    {
                 
-                selectEquipment = value;
-                if(selectEquipment == null)
-                {
-                    FIO = null;
-                    Signal(nameof(FIO));
-                    return;
-                }
-                else
-                {
-                    Booking.IdEquipment = SelectEquipment.Id;
-                    Scientist = DBInstance.GetInstance().Scientists.
-                        Where(s => s.Id == SelectEquipment.IdReponsibleScientists).FirstOrDefault();
-                    FIO = $"{Scientist.Firstname} {Scientist.Patronymic} {Scientist.Lastname}";
-                    Signal();
-                    Signal(nameof(Scientist));
-                    Signal(nameof(FIO));
-                }
+        //        selectEquipment = value;
+        //        if(selectEquipment == null)
+        //        {
+        //            FIO = null;
+        //            Signal(nameof(FIO));
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            Booking.IdEquipment = SelectEquipment.Id;
+        //            Scientist = DBInstance.GetInstance().Scientists.
+        //                Where(s => s.Id == SelectEquipment.IdReponsibleScientists).FirstOrDefault();
+        //            FIO = $"{Scientist.Firstname} {Scientist.Patronymic} {Scientist.Lastname}";
+        //            Signal();
+        //            Signal(nameof(Scientist));
+        //            Signal(nameof(FIO));
+        //        }
                
-            }
-        }
+        //    }
+        //}
         public List<PurposeOfUse> Purposes { get; set; }
         public PurposeOfUse SelectPurpose
         {
@@ -56,11 +56,16 @@ namespace Equipment_Client.VM
         }
         public CustomCommand Save { get; set; }
         public CustomCommand CleanForm { get; set; }
-        public BookingEquipmentVM(Scientist scientist)
+        public BookingEquipmentVM(Scientist scientist, Equipment selectedEquipment)
         {
             try
             {
-                Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdStatus == 1 || s.IdStatus == 5 || s.IdStatus == 7).ToList();
+                Booking.IdEquipment = selectedEquipment.Id;
+                Scientist = DBInstance.GetInstance().Scientists.Where(s => s.Id == selectedEquipment.IdReponsibleScientists).FirstOrDefault();
+                FIO = $"{Scientist.Firstname} {Scientist.Patronymic} {Scientist.Lastname}";
+                Signal(nameof(Scientist));
+                Signal(nameof(FIO));
+                //Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdStatus == 1 || s.IdStatus == 5 || s.IdStatus == 7).ToList();
                 Purposes = DBInstance.GetInstance().PurposeOfUses.ToList();
             }
             catch
@@ -74,7 +79,8 @@ namespace Equipment_Client.VM
                 interval.AddDays(7);
 
                 if(Booking.DateStart == null || Booking.DateEnd == null || 
-                   SelectEquipment == null || SelectPurpose == null)
+                    SelectPurpose == null)
+                //SelectEquipment == null ||
                 {
                     MessageBox.Show("Не все данные заполнены");
                     return;
@@ -91,7 +97,7 @@ namespace Equipment_Client.VM
                 }
                 try
                 {
-                    Booking.IdEquipment = SelectEquipment.Id;
+                    //Booking.IdEquipment = SelectEquipment.Id;
                     Booking.IdScientist = scientist.Id;
                     Booking.IdPurposeOfUse = SelectPurpose.Id;
                     Booking.Approved = 0;
@@ -111,10 +117,10 @@ namespace Equipment_Client.VM
             {
                 Booking = new();
                 SelectPurpose = null;
-                SelectEquipment = null;
+                //SelectEquipment = null;
                 Signal(nameof(SelectPurpose));
                 Signal(nameof(Booking));
-                Signal(nameof(SelectEquipment));
+                //Signal(nameof(SelectEquipment));
                 return;
             });
         }

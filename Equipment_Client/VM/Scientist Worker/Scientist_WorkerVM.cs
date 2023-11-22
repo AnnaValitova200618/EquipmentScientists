@@ -39,10 +39,10 @@ namespace Equipment_Client.VM
             {
                 CurrentPage = new ListBookingEquipment(this);
             });
-            OpenBookingEquipment = new CustomCommand(() =>
-            {
-                CurrentPage = new BookingEquipment(scientist);
-            });
+            //OpenBookingEquipment = new CustomCommand(() =>
+            //{
+            //    CurrentPage = new BookingEquipment(scientist);
+            //});
             Back = new CustomCommand(() =>
             {
                 new MainWindow().Show();

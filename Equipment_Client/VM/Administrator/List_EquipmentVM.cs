@@ -97,7 +97,12 @@ namespace Equipment_Client.VM.Administrator
 
             Booking = new CustomCommand(() =>
             {
-                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist);
+                if (SelectedEquipment == null)
+                {
+                    MessageBox.Show("Необходимо выбрать оборудование");
+                    return;
+                }
+                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist, SelectedEquipment);
             });
 
             Reset = new CustomCommand(() =>
