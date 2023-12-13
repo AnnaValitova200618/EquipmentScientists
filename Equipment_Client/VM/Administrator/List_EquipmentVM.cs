@@ -102,7 +102,12 @@ namespace Equipment_Client.VM.Administrator
                     MessageBox.Show("Необходимо выбрать оборудование");
                     return;
                 }
-                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist, SelectedEquipment);
+                if(SelectedEquipment.IdStatus == 2 || SelectedEquipment.IdStatus == 3 || SelectedEquipment.IdStatus == 4 )
+                {
+                    MessageBox.Show("Оборудование не может быть забранировано");
+                    return;
+                }
+                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist, SelectedEquipment, scientist_WorkerVM);
             });
 
             Reset = new CustomCommand(() =>

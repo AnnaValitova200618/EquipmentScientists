@@ -21,10 +21,10 @@ namespace Equipment_Client.Views
     /// </summary>
     public partial class BookingEquipment : Page
     {
-        public BookingEquipment(Models.Scientist scientist, Models.Equipment selectedEquipment)
+        public BookingEquipment(Models.Scientist scientist, Models.Equipment selectedEquipment, Scientist_WorkerVM scientist_WorkerVM)
         {
             InitializeComponent();
-            DataContext = new BookingEquipmentVM(scientist, selectedEquipment);
+            DataContext = new BookingEquipmentVM(scientist, selectedEquipment, scientist_WorkerVM);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Equipment_Client.VM.Responsible
         public CustomCommand Sort { get; set; }
         public Func<double, string> YFormatter { get; set; }
         public string[] Labels { get; set; }
-        public int MaxVal { get; set; }
+        public int MaxVal { get; set; } = 1;
 
         public List<Equipment> Equipments { get; set; }
         public Equipment SelectEquipment
@@ -53,18 +53,30 @@ namespace Equipment_Client.VM.Responsible
                             .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id && s.IdEquipment == SelectEquipment.Id)
                             .GroupBy(s => s.DateStart.Month);
 
+                        
 
                         var bookingsApproved = DBInstance.GetInstance().Bookings
                             .Where(s => s.Approved == 1 && s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id && s.IdEquipment == SelectEquipment.Id)
                             .GroupBy(s => s.DateStart.Month);
-
+                        
                         int[] countsByMonthAllBookings = new int[12];
                         int[] countsByMonthBookingsApproved = new int[12];
                         for (int i = 0; i < 12; i++)
                         {
                             countsByMonthAllBookings[i] = allBookings.Where(s => s.Key == i + 1).Select(s => s.Count()).Sum();
                             countsByMonthBookingsApproved[i] = bookingsApproved.Where(s => s.Key == i + 1).Select(s => s.Count()).Sum();
+                        }
 
+                        int max1 = countsByMonthAllBookings.Max();
+                        int max2 = countsByMonthBookingsApproved.Max();
+
+                        if(max1 > max2)
+                        {
+                            MaxVal = max1 + 20;
+                        }
+                        else
+                        {
+                            MaxVal = max2 + 20;
                         }
 
                         SeriesViews = new SeriesCollection
@@ -89,7 +101,7 @@ namespace Equipment_Client.VM.Responsible
                             PointGeometrySize = 15,
                             Fill = Brushes.Transparent
                         });
-                        
+                        Signal(nameof(MaxVal));
                         Signal(nameof(SeriesViews));
                     }
                 });

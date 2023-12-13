@@ -73,11 +73,7 @@ namespace Equipment_Client.VM
                 GetBooking();
                 PurposeOfUses = DBInstance.GetInstance().PurposeOfUses.ToList();
 
-                foreach (Booking booking in Bookings)
-                {
-                    fio = $"{booking.IdScientistNavigation.Lastname} {booking.IdScientistNavigation.Firstname.Split()} {booking.IdScientistNavigation.Patronymic}";
-                    booking.IdScientistNavigation.FIO = fio;
-                }
+                
                 GetBooking();
             }
             catch

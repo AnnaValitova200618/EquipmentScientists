@@ -1,6 +1,7 @@
 ﻿using Equipment_Client.DB;
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
+using MaterialDesignColors;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,12 @@ namespace Equipment_Client.VM.Responsible
     public class RequestEquipmentVM : BaseVM
     {
         private List<Booking> bookings;
+        private PurposeOfUse selectPurposeOfUse;
+        private readonly Scientist scientist;
 
         public CustomCommand Approve { get; set; }
+        public CustomCommand Reset { get; set; }
+
         public List<Booking> Bookings
         {
             get => bookings;
@@ -27,17 +32,38 @@ namespace Equipment_Client.VM.Responsible
         }
 
         public List<Booking> ApproveBookings { get; set; }
+        public List<PurposeOfUse> PurposeOfUses { get; set; }
+        public PurposeOfUse SelectPurposeOfUse 
+        {
+            get => selectPurposeOfUse;
+            set
+            {
+                selectPurposeOfUse = value;
+                GetBookings(scientist);
+            }
+        }
+
+        
+
         public RequestEquipmentVM(Scientist scientist)
         {
             try
             {
+                this.scientist = scientist;
                 GetBookings(scientist);
+                PurposeOfUses = DBInstance.GetInstance().PurposeOfUses.ToList();
             }
             catch
             {
                 MessageBox.Show("Проблема с БД");
                 return;
             }
+
+            Reset = new CustomCommand(() =>
+            {
+                SelectPurposeOfUse = null;
+                Signal(nameof(SelectPurposeOfUse));
+            });
 
             Approve = new CustomCommand(() =>
             {
@@ -98,17 +124,43 @@ namespace Equipment_Client.VM.Responsible
                     return;
                 }
             });
+            
         }
 
         private void GetBookings(Scientist scientist)
         {
+            DateTime dateTime = DateTime.Now;
+
             Bookings = DBInstance.GetInstance().Bookings
                 .Include(s => s.IdEquipmentNavigation)
                 .Include(s => s.IdScientistNavigation)
                 .Include(s => s.IdPurposeOfUseNavigation)
                 .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id)
                 .Where(s => s.Approved == 0)
+                .Where(s => s.DateStart.DayOfYear > dateTime.DayOfYear)
                 .ToList();
+            try
+            {
+                if (SelectPurposeOfUse != null)
+                {
+                        Bookings = DBInstance.GetInstance().Bookings
+                    .Include(s => s.IdEquipmentNavigation)
+                    .Include(s => s.IdScientistNavigation)
+                    .Include(s => s.IdPurposeOfUseNavigation)
+                    .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id)
+                    .Where(s => s.Approved == 0)
+                    .Where(s => s.DateStart.DayOfYear > dateTime.DayOfYear)
+                    .Where(s => s.IdPurposeOfUse == SelectPurposeOfUse.Id)
+                    .ToList();
+                    Signal(nameof(Bookings));
+                }
+            }
+            catch 
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+            
         }
     }
 }

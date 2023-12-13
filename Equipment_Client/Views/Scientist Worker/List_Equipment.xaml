@@ -47,7 +47,7 @@
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
 
-        <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Equipments}" ItemContainerStyle="{StaticResource container}">
+        <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}" ItemContainerStyle="{StaticResource container}">
             <ListView.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Забронировать" Command="{Binding Booking}"/>
@@ -57,7 +57,7 @@
                 <GridView>
                     <GridViewColumn Header="Название оборудования" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding IdTypeNavigation.Title}" />
-                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.Lastname}" />
+                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.FIO}" />
                     <GridViewColumn Header="Габариты" DisplayMemberBinding="{Binding Dimansions}" />
                     <GridViewColumn Header="Вес (кг)" DisplayMemberBinding="{Binding Weight}"/>
                     <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding IdStatusNavigation.Title}" />

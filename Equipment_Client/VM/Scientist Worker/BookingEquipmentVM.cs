@@ -1,6 +1,7 @@
 ﻿using Equipment_Client.DB;
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
+using Equipment_Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,11 +57,11 @@ namespace Equipment_Client.VM
         }
         public CustomCommand Save { get; set; }
         public CustomCommand CleanForm { get; set; }
-        public BookingEquipmentVM(Scientist scientist, Equipment selectedEquipment)
+        public BookingEquipmentVM(Scientist scientist, Equipment selectedEquipment, Scientist_WorkerVM scientist_WorkerVM)
         {
             try
             {
-                Booking.IdEquipment = selectedEquipment.Id;
+                Booking.IdEquipmentNavigation = selectedEquipment;
                 Scientist = DBInstance.GetInstance().Scientists.Where(s => s.Id == selectedEquipment.IdReponsibleScientists).FirstOrDefault();
                 FIO = $"{Scientist.Firstname} {Scientist.Patronymic} {Scientist.Lastname}";
                 Signal(nameof(Scientist));
@@ -76,7 +77,7 @@ namespace Equipment_Client.VM
             Save = new CustomCommand(() =>
             {
                 DateTime interval = new DateTime();
-                interval.AddDays(7);
+                interval = interval.AddDays(6);
 
                 if(Booking.DateStart == null || Booking.DateEnd == null || 
                     SelectPurpose == null)
@@ -90,7 +91,7 @@ namespace Equipment_Client.VM
                     MessageBox.Show("Дата начала бронирования не может быть больше даты окончания бронирования");
                     return;
                 }
-                if((Booking.DateEnd).DayOfYear - DateTime.Now.DayOfYear < interval.DayOfYear)
+                if((Booking.DateStart).DayOfYear - DateTime.Now.DayOfYear < interval.DayOfYear)
                 {
                     MessageBox.Show("Дата начала бронирования должна быть больше сегодняшней даты на неделю");
                     return;
@@ -98,14 +99,16 @@ namespace Equipment_Client.VM
                 try
                 {
                     //Booking.IdEquipment = SelectEquipment.Id;
+                    
                     Booking.IdScientist = scientist.Id;
                     Booking.IdPurposeOfUse = SelectPurpose.Id;
                     Booking.Approved = 0;
                     DBInstance.GetInstance().Bookings.Add(Booking);
                     DBInstance.GetInstance().SaveChanges();
 
-                    CleanForm.Execute(null);
+                   // CleanForm.Execute(null);
                     MessageBox.Show("Заявка на бронирование отправлена!");
+                    scientist_WorkerVM.CurrentPage = new List_Equipment(scientist_WorkerVM, scientist);
                 }
                 catch
                 {

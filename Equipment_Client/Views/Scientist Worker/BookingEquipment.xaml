@@ -36,7 +36,7 @@
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Content="Забронировать" Command="{Binding Save}" Width="200"/>
-            <Button Content="Очистить форму" Width="200" Command="{Binding CleanForm}"/>
+            <!--<Button Content="Очистить форму" Width="200" Command="{Binding CleanForm}"/>-->
         </StackPanel>
         
     </Grid>

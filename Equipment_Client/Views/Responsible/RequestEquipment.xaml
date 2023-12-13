@@ -20,7 +20,7 @@
         <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
             <Label>
                 <Label.Content>
-                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="200" FontWeight="Bold"/>
+                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="250" FontWeight="Bold"/>
                 </Label.Content>
             </Label>
             <ComboBox ItemsSource="{Binding PurposeOfUses}"
@@ -31,7 +31,7 @@
         <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название оборудования" Binding="{Binding IdEquipmentNavigation.Name}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Научный работник" Binding="{Binding IdScientistNavigation.Lastname}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Научный работник" Binding="{Binding IdScientistNavigation.FIO}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Деятельность бронирования" Binding="{Binding IdPurposeOfUseNavigation.Title}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Дата начала" Binding="{Binding DateStart, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Дата конца" Binding="{Binding DateEnd, StringFormat=dd.MM.yyyy}" IsReadOnly="True"/>

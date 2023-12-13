@@ -1,6 +1,8 @@
 ﻿using Equipment_Client.DB;
+using Equipment_Client.Models;
 using Equipment_Client.Tools;
 using Equipment_Client.VM;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +29,17 @@ namespace Equipment_Client
         {
             InitializeComponent();
             DataContext = new MainWindowVM(window, password);
-        }
 
+            Scientists = DBInstance.GetInstance().Scientists.ToList();
+
+            foreach (Scientist scientist in Scientists)
+            {
+                fio = $"{scientist.Lastname} {scientist.Firstname.Substring(0, 1)}.{scientist.Patronymic.Substring(0, 1)}.";
+                scientist.FIO = fio;
+            }
+        }
+        public string fio { get; set; }
+        public List<Scientist> Scientists { get; set; }
         
     }
 }

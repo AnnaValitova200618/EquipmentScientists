@@ -26,7 +26,7 @@
                 <GridView>
                     <GridViewColumn Header="Название оборудования" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding IdTypeNavigation.Title}" />
-                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.Lastname}" />
+                    <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.FIO}" />
                     <GridViewColumn Header="Габариты" DisplayMemberBinding="{Binding Dimansions}" />
                     <GridViewColumn Header="Вес (кг)" DisplayMemberBinding="{Binding Weight}"/>
                 </GridView>
