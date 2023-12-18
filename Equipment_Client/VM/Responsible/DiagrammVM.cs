@@ -15,6 +15,7 @@ namespace Equipment_Client.VM.Responsible
     public class DiagrammVM : BaseVM
     {
         private Equipment selectEquipment;
+        private string selectYear;
 
         public SeriesCollection SeriesViews { get; set; }
         public CustomCommand Sort { get; set; }
@@ -33,7 +34,17 @@ namespace Equipment_Client.VM.Responsible
                 Sort.Execute(null);
             }
         }
-
+        public List<string> Years { get; set; }
+        public string SelectYear 
+        {
+            get => selectYear;
+            set
+            {
+                selectYear = value;
+                Signal();
+                Sort.Execute(null);
+            }
+        }
 
 
         public DiagrammVM(Scientist scientist)
@@ -41,12 +52,20 @@ namespace Equipment_Client.VM.Responsible
             try
             {
                 Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-                
+                Years = new List<string>(new string[] {"2023", "2024" });
                 Labels = new string[] { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
                 YFormatter = value => value.ToString("0");
 
                 Sort = new CustomCommand(() =>
                 {
+                    if (SelectEquipment == null && SelectYear != null)
+                    {
+                        MessageBox.Show("Необходимо выбрать оборудование");
+                        SelectYear = null;
+                        Signal(nameof(SelectYear));
+                        
+                    }
+
                     if (SelectEquipment != null)
                     {
                         var allBookings = DBInstance.GetInstance().Bookings
@@ -104,6 +123,7 @@ namespace Equipment_Client.VM.Responsible
                         Signal(nameof(MaxVal));
                         Signal(nameof(SeriesViews));
                     }
+                    
                 });
 
             }

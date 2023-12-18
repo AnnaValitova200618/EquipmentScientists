@@ -27,7 +27,9 @@
                     <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding Patronymic}"/>
                     <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding Lastname}"/>
                     <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding IdPositionNavigation.Title}"/>
+                    <GridViewColumn Header="Лаборатория" DisplayMemberBinding="{Binding IdLaboratotyNavigation.Name}"/>
                     <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}"/>
+                    <GridViewColumn Header="Дата увольнения" DisplayMemberBinding="{Binding DismissalDate}"/>
                 </GridView>
             </ListView.View>
         </ListView>

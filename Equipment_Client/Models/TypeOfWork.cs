@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Equipment_Client.Models;
 
-public partial class Plan
+public partial class TypeOfWork
 {
     public int Id { get; set; }
 

@@ -86,7 +86,7 @@ namespace Equipment_Client.VM.Administrator
         {
             try
             {
-                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
+                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").Include("IdLaboratotyNavigation").ToList();
                 Positions = DBInstance.GetInstance().Positions.ToList();
             }
             catch

@@ -18,7 +18,8 @@
                       SelectedItem="{Binding SelectEquipment}"
                       DisplayMemberPath="Name" FontSize="15" Width="300"/>
             <Label Content="Выбрать год:" FontWeight="Bold"/>
-            <ComboBox/>
+            <ComboBox ItemsSource="{Binding Years}"
+                      SelectedItem="{Binding SelectYear}" FontSize="15"/>
         </StackPanel>
 
         <lvc:CartesianChart Series="{Binding SeriesViews}" LegendLocation="Right" Grid.Row="1">

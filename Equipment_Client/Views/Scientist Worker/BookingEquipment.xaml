@@ -28,7 +28,7 @@
             <Label Content="Дата конца бронирования" FontWeight="Bold"/>
             <DatePicker SelectedDate="{Binding Booking.DateEnd}" FontSize="14"/>
 
-            <Label Content="Деятельность бронирования" FontWeight="Bold"/>
+            <Label Content="Основание для бронирования" FontWeight="Bold"/>
             <ComboBox ItemsSource="{Binding Purposes}"
                       SelectedItem="{Binding SelectPurpose}"
                       DisplayMemberPath="Title" FontSize="14"/>
