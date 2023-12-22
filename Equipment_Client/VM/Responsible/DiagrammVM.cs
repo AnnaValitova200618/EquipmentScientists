@@ -15,7 +15,7 @@ namespace Equipment_Client.VM.Responsible
     public class DiagrammVM : BaseVM
     {
         private Equipment selectEquipment;
-        private string selectYear;
+        private int selectYear;
 
         public SeriesCollection SeriesViews { get; set; }
         public CustomCommand Sort { get; set; }
@@ -34,8 +34,8 @@ namespace Equipment_Client.VM.Responsible
                 Sort.Execute(null);
             }
         }
-        public List<string> Years { get; set; }
-        public string SelectYear 
+        public List<int> Years { get; set; }
+        public int SelectYear 
         {
             get => selectYear;
             set
@@ -52,30 +52,30 @@ namespace Equipment_Client.VM.Responsible
             try
             {
                 Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-                Years = new List<string>(new string[] {"2023", "2024" });
+                Years = new List<int>(new int[] {2023, 2024});
+                
                 Labels = new string[] { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
                 YFormatter = value => value.ToString("0");
 
                 Sort = new CustomCommand(() =>
                 {
-                    if (SelectEquipment == null && SelectYear != null)
-                    {
-                        MessageBox.Show("Необходимо выбрать оборудование");
-                        SelectYear = null;
-                        Signal(nameof(SelectYear));
-                        
-                    }
+                    
 
                     if (SelectEquipment != null)
                     {
                         var allBookings = DBInstance.GetInstance().Bookings
-                            .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id && s.IdEquipment == SelectEquipment.Id)
+                            .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id &&
+                                   s.IdEquipment == SelectEquipment.Id &&
+                                   s.DateStart.Year == SelectYear)
                             .GroupBy(s => s.DateStart.Month);
 
                         
 
                         var bookingsApproved = DBInstance.GetInstance().Bookings
-                            .Where(s => s.Approved == 1 && s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id && s.IdEquipment == SelectEquipment.Id)
+                            .Where(s => s.Approved == 1 && 
+                                   s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id && 
+                                   s.IdEquipment == SelectEquipment.Id &&
+                                   s.DateStart.Year == SelectYear)
                             .GroupBy(s => s.DateStart.Month);
                         
                         int[] countsByMonthAllBookings = new int[12];
@@ -126,6 +126,7 @@ namespace Equipment_Client.VM.Responsible
                     
                 });
 
+                SelectYear = DateTime.Now.Year;
             }
             catch
             {

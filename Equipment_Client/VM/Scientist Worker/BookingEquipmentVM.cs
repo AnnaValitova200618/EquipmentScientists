@@ -91,7 +91,7 @@ namespace Equipment_Client.VM
                     MessageBox.Show("Дата начала бронирования не может быть больше даты окончания бронирования");
                     return;
                 }
-                if((Booking.DateStart).DayOfYear - DateTime.Now.DayOfYear < interval.DayOfYear)
+                if (Booking.DateStart.Subtract(DateTime.Now).TotalDays < 6)
                 {
                     MessageBox.Show("Дата начала бронирования должна быть больше сегодняшней даты на неделю");
                     return;
