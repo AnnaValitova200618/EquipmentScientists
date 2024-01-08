@@ -61,7 +61,6 @@ public partial class EquipmentContext : DbContext
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.DateEnd).HasColumnType("date");
             entity.Property(e => e.DateStart).HasColumnType("date");
-            entity.Property(e => e.IdConfirmation).HasColumnName("ID_Confirmation");
             entity.Property(e => e.IdEquipment).HasColumnName("ID_Equipment");
             entity.Property(e => e.IdPurposeOfUse).HasColumnName("ID_PurposeOfUse");
             entity.Property(e => e.IdScientist).HasColumnName("ID_Scientist");
@@ -120,6 +119,7 @@ public partial class EquipmentContext : DbContext
 
             entity.HasOne(d => d.IdReportNavigation).WithMany(p => p.FhotoPaths)
                 .HasForeignKey(d => d.IdReport)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_FhotoPath_Report");
         });
 
@@ -243,6 +243,7 @@ public partial class EquipmentContext : DbContext
 
             entity.HasOne(d => d.IdLaboratotyNavigation).WithMany(p => p.Scientists)
                 .HasForeignKey(d => d.IdLaboratoty)
+                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Scientists_Laboratory");
 
             entity.HasOne(d => d.IdPositionNavigation).WithMany(p => p.Scientists)

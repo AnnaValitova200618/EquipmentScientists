@@ -91,11 +91,11 @@ namespace Equipment_Client.VM.Responsible
 
                         if(max1 > max2)
                         {
-                            MaxVal = max1 + 20;
+                            MaxVal = max1 + 10;
                         }
                         else
                         {
-                            MaxVal = max2 + 20;
+                            MaxVal = max2 + 10;
                         }
 
                         SeriesViews = new SeriesCollection

@@ -7,7 +7,7 @@ public partial class Position
 {
     public int Id { get; set; }
 
-    public string? Title { get; set; }
+    public string Title { get; set; } = null!;
 
     public virtual ICollection<Scientist> Scientists { get; } = new List<Scientist>();
 }

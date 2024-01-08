@@ -86,7 +86,7 @@ namespace Equipment_Client.VM
                     MessageBox.Show("Не все данные заполнены");
                     return;
                 }
-                if((Booking.DateEnd).DayOfYear < (Booking.DateStart).DayOfYear)
+                if(Booking.DateEnd < Booking.DateStart)
                 {
                     MessageBox.Show("Дата начала бронирования не может быть больше даты окончания бронирования");
                     return;

@@ -65,7 +65,7 @@
        
            
 
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
+            <!--<StackPanel Grid.Row="1" VerticalAlignment="Center" Margin="10">
                 <Label Content="Добавление нового оборудования" HorizontalAlignment="Center" FontSize="17" FontWeight="Bold"/>
             <Label Content="Названние"  FontWeight="Bold"/>
             <TextBox Text="{Binding Equipment.Name}" FontSize="14"/>
@@ -82,6 +82,6 @@
         <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
             <Button Width="200" Command="{Binding Add}" Content="Добавить"/>
             <Button Content="Очистить форму" Width="200" Command="{Binding CleanForm}"/>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </Page>

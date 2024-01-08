@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         x:Name="window"
         Title="Редактирование оборудования" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFC1F7FD">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>

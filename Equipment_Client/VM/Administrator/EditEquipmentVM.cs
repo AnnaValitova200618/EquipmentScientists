@@ -43,7 +43,7 @@ namespace Equipment_Client.VM.Administrator
             {
                 Equipment = selectedEquipment;
                 Types = DBInstance.GetInstance().Types.ToList();
-                Scientists = DBInstance.GetInstance().Scientists.Where(s => s.IdPosition == 2).ToList();
+                Scientists = DBInstance.GetInstance().Scientists.Where(s => s.IdPosition == 2 && s.DismissalDate == null).ToList();
                 SelectScientist = Equipment.IdReponsibleScientistsNavigation;
                 SelectType = Equipment.IdTypeNavigation;
             }

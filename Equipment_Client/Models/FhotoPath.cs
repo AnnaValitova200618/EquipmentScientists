@@ -9,7 +9,7 @@ public partial class FhotoPath
 
     public string Path { get; set; } = null!;
 
-    public int? IdReport { get; set; }
+    public int IdReport { get; set; }
 
-    public virtual Report? IdReportNavigation { get; set; }
+    public virtual Report IdReportNavigation { get; set; } = null!;
 }

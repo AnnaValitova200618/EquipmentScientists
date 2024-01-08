@@ -2,6 +2,7 @@
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
 using Equipment_Client.Views;
+using Equipment_Client.Views.Administrator;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -39,7 +40,7 @@ namespace Equipment_Client.VM.Administrator
             }
         }
         public CustomCommand Reset { get; set; }
-        public CustomCommand AddUser { get; set; }
+        
         public CustomCommand RemoveUser { get; set; }
         public CustomCommand EditUser { get; set; }
         public List<Scientist> Scientists
@@ -86,7 +87,7 @@ namespace Equipment_Client.VM.Administrator
         {
             try
             {
-                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").Include("IdLaboratotyNavigation").ToList();
+                TakeListScientists();
                 Positions = DBInstance.GetInstance().Positions.ToList();
             }
             catch
@@ -98,36 +99,27 @@ namespace Equipment_Client.VM.Administrator
 
             RemoveUser = new CustomCommand(() =>
             {
-                try
-                {
+                
                     if (SelectedScientist == null)
                     {
                         MessageBox.Show("Необходимо выбрать пользователя");
                         return;
                     }
-                    if (MessageBox.Show("Вы действительно хотите удалить пользователя?", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                    if(SelectedScientist.DismissalDate != null)
                     {
+                        MessageBox.Show("Пользователь уже уволен");
                         return;
                     }
                     else
                     {
-                        DBInstance.GetInstance().Scientists.Remove(SelectedScientist);
-                        DBInstance.GetInstance().SaveChanges();
-                        Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
-                    }
+                        new DismissalScientist(SelectedScientist).ShowDialog();
+                        TakeListScientists();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Проблема с БД");
-                }
-
+                
+                
             });
 
-            AddUser = new CustomCommand(() =>
-            {
-                new EditScientist(new Scientist()).ShowDialog();
-                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
-            });
+            
             EditUser = new CustomCommand(() =>
             {
                 if (SelectedScientist == null)
@@ -137,13 +129,22 @@ namespace Equipment_Client.VM.Administrator
                 }
 
                 new EditScientist(SelectedScientist).ShowDialog();
-                Scientists = DBInstance.GetInstance().Scientists.Include("IdPositionNavigation").ToList();
+                TakeListScientists();
             });
             Reset = new CustomCommand(() =>
             {
                 SelectedPosition = null;
                 Signal(nameof(SelectedPosition));
             });
+        }
+
+        private void TakeListScientists()
+        {
+            Scientists = DBInstance.GetInstance().Scientists
+                .Include("IdPositionNavigation")
+                .Include("IdLaboratotyNavigation")
+                .Where(s=>s.Id != 31)
+                .ToList();
         }
     }
 }

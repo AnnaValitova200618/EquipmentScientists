@@ -1,8 +1,4 @@
-﻿using Equipment_Client.DB;
-using Equipment_Client.Models;
-using Equipment_Client.Tools;
-using Equipment_Client.VM;
-using Microsoft.EntityFrameworkCore;
+﻿using Equipment_Client.VM.Administrator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,23 +11,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Equipment_Client
+namespace Equipment_Client.Views.Administrator
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для DismissalScientist.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class DismissalScientist : Window
     {
-        public MainWindow()
+        public DismissalScientist(Models.Scientist selectedScientist)
         {
             InitializeComponent();
-            DataContext = new MainWindowVM(window, password);
-
+            DataContext = new DismissalScientistVM(selectedScientist, window);
         }
-        
-        
     }
 }

@@ -7,27 +7,36 @@
         mc:Ignorable="d"
         x:Name="window"
         Title="Редактирование сотрудника" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Background="#FFC1F7FD">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel  VerticalAlignment="Center"  Margin="10">
-            <Label Content="Имя" FontWeight="Bold"/>
-            <TextBox Text="{Binding Scientist.Firstname}" FontSize="14"/>
-            <Label Content="Отчество" FontWeight="Bold"/>
-            <TextBox Text="{Binding Scientist.Patronymic}" FontSize="14"/>
-            <Label Content="Фамилия" FontWeight="Bold"/>
-            <TextBox Text="{Binding Scientist.Lastname}" FontSize="14"/>
-            <Label Content="Должность" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Positions}" 
-                      SelectedItem="{Binding SelectPosition}" 
-                      DisplayMemberPath="Title" FontSize="14"/>
-            <Label Content="Логин" Visibility="{Binding Visibility}" FontWeight="Bold"/>
-            <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}" FontSize="14"/>
-            <Label Content="Пароль" Visibility="{Binding Visibility}" FontWeight="Bold"/>
-            <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}" FontSize="14"/>
-        </StackPanel>
+        <ScrollViewer>
+            <StackPanel  VerticalAlignment="Center"  Margin="10">
+                <Label Content="Имя" FontWeight="Bold"/>
+                <TextBox Text="{Binding Scientist.Firstname}" FontSize="14"/>
+                <Label Content="Отчество" FontWeight="Bold"/>
+                <TextBox Text="{Binding Scientist.Patronymic}" FontSize="14"/>
+                <Label Content="Фамилия" FontWeight="Bold"/>
+                <TextBox Text="{Binding Scientist.Lastname}" FontSize="14"/>
+                <Label Content="Должность" FontWeight="Bold"/>
+                <ComboBox ItemsSource="{Binding Positions}" 
+              SelectedItem="{Binding SelectPosition}" 
+              DisplayMemberPath="Title" FontSize="14"/>
+                <Label Content="Лаборатория" FontWeight="Bold"/>
+                <ComboBox ItemsSource="{Binding Laboratores}" 
+              SelectedItem="{Binding SelectLaboratory}" 
+              DisplayMemberPath="Name" FontSize="14"/>
+                <Label Content="Логин" Visibility="{Binding Visibility}" FontWeight="Bold"/>
+                <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}" FontSize="14"/>
+                <Label Content="Пароль" Visibility="{Binding Visibility}" FontWeight="Bold"/>
+                <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}" FontSize="14"/>
+                <Button Content="Сотрдуник забыл пароль" Visibility="{Binding VisibilityUpdatePassword}" Command="{Binding UpdatePassword}" Cursor="Hand"/>
+                <Label Content="Новый пароль" Visibility="{Binding VisibilityText}"/>
+                <TextBox Visibility="{Binding VisibilityText}" Text="{Binding NewPassword}"/>
+            </StackPanel>
+        </ScrollViewer>
         <Button Width="200" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Content="Сохранить" Command="{Binding Save}"/>
     </Grid>
 </Window>

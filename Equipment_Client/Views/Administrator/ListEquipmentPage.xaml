@@ -13,12 +13,13 @@
             <ColumnDefinition/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-
-        <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
+        
+        
+        <ListView Margin="15"  ItemsSource="{Binding Equipments}" SelectedItem="{Binding SelectedEquipment}">
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Добавить" Command="{Binding AddEquipment}"/>
-                    <MenuItem Header="Удалить" Command="{Binding RemoveEquipment}"/>
+                    
+                    
                     <MenuItem Header="Редактировать" Command="{Binding EditEquipment}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
@@ -32,7 +33,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE">
+        <StackPanel Grid.Column="1" Grid.RowSpan="2" Orientation="Vertical" Background="#FF83EAEE">
             <Label Content="Поиск:" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="14"/>

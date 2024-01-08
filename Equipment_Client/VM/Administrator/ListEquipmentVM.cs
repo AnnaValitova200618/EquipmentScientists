@@ -2,7 +2,6 @@
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
 using Equipment_Client.Views;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +11,7 @@ using System.Windows;
 
 namespace Equipment_Client.VM.Administrator
 {
-    public class List_EquipmentVM : BaseVM
+    public class ListEquipmentVM : BaseVM
     {
         private List<Equipment> equipments;
         private Models.Type selectType;
@@ -57,10 +56,9 @@ namespace Equipment_Client.VM.Administrator
                 DoSearch();
             }
         }
-        public CustomCommand AddEquipment { get; set; }
-        public CustomCommand RemoveEquipment { get; set; }
+
         public CustomCommand EditEquipment { get; set; }
-        public CustomCommand Booking { get; set; }
+        public CustomCommand Reset { get; set; }
         private void DoSearch()
         {
             try
@@ -80,13 +78,11 @@ namespace Equipment_Client.VM.Administrator
             }
 
         }
-
-        public CustomCommand Reset { get; set; }
-        public List_EquipmentVM(Scientist_WorkerVM scientist_WorkerVM, Scientist scientist)
+        public ListEquipmentVM(Scientist_WorkerVM scientist_WorkerVM, Scientist scientist)
         {
             try
             {
-                Equipments = CheckStatusEquipment.CheckStatus();
+                Equipments = DBInstance.GetInstance().Equipment.ToList();
                 Types = DBInstance.GetInstance().Types.ToList();
             }
             catch
@@ -95,32 +91,13 @@ namespace Equipment_Client.VM.Administrator
                 return;
             }
 
-            Booking = new CustomCommand(() =>
-            {
-                if (SelectedEquipment == null)
-                {
-                    MessageBox.Show("Необходимо выбрать оборудование");
-                    return;
-                }
-                if(SelectedEquipment.IdStatus == 2 || SelectedEquipment.IdStatus == 3 || SelectedEquipment.IdStatus == 4 )
-                {
-                    MessageBox.Show("Оборудование не может быть забранировано");
-                    return;
-                }
-                scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist, SelectedEquipment, scientist_WorkerVM);
-            });
-
             Reset = new CustomCommand(() =>
             {
                 SelectType = null;
                 Signal(nameof(SelectType));
             });
 
-            AddEquipment = new CustomCommand(() =>
-            {
-                new EditEquipment(new Equipment()).ShowDialog();
-                Equipments = CheckStatusEquipment.CheckStatus();
-            });
+
             EditEquipment = new CustomCommand(() =>
             {
                 if (SelectedEquipment == null)
@@ -129,33 +106,7 @@ namespace Equipment_Client.VM.Administrator
                     return;
                 }
                 new EditEquipment(SelectedEquipment).ShowDialog();
-                Equipments = CheckStatusEquipment.CheckStatus();
-            });
-            RemoveEquipment = new CustomCommand(() =>
-            {
-                try
-                {
-                    if (SelectedEquipment == null)
-                    {
-                        MessageBox.Show("Необходимо выбрать оборудование");
-                        return;
-                    }
-                    if (MessageBox.Show("Вы действительно хотите удалить оборудование?", "", MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
-                    {
-                        return;
-                    }
-                    else
-                    {
-                        DBInstance.GetInstance().Equipment.Remove(SelectedEquipment);
-                        DBInstance.GetInstance().SaveChanges();
-                        Equipments = CheckStatusEquipment.CheckStatus();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Проблема с БД");
-                }
-
+                Equipments = DBInstance.GetInstance().Equipment.ToList();
             });
         }
     }

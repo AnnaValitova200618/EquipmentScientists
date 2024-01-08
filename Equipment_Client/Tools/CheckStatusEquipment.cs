@@ -48,7 +48,9 @@ namespace Equipment_Client.Tools
             return DBInstance.GetInstance().Equipment
                 .Include("IdTypeNavigation")
                 .Include(s => s.IdReponsibleScientistsNavigation)
-                .Include(s => s.IdStatusNavigation).ToList();
+                .Include(s => s.IdStatusNavigation)
+                .Where(s=>s.IdReponsibleScientists != 31)
+                .ToList();
         }
     }
 }

@@ -20,7 +20,6 @@ public partial class Booking
 
     public int IdPurposeOfUse { get; set; }
 
-    public int? IdConfirmation { get; set; }
 
     public byte? Approved { get; set; }
     [NotMapped]

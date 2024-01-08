@@ -1,4 +1,6 @@
-﻿using Equipment_Client.VM;
+﻿using Equipment_Client.DB;
+using Equipment_Client.Models;
+using Equipment_Client.VM;
 using Equipment_Client.VM.Administrator;
 using System;
 using System.Collections.Generic;
@@ -24,9 +26,11 @@ namespace Equipment_Client.Views
         public Scientist_WorkerVM scientist_WorkerVM;
         public Administrator_Window(Models.Scientist scientist)
         {
-            
+
             InitializeComponent();
             DataContext = new Administrator_WindowVM(Window, scientist, scientist_WorkerVM);
-        }
+        }  
+
     }
+
 }

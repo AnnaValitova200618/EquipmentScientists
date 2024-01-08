@@ -16,8 +16,8 @@
         <ListView ItemsSource="{Binding Scientists}" SelectedItem="{Binding SelectedScientist}" >
             <ListView.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="Добавить" Command="{Binding AddUser}"/>
-                    <MenuItem Header="Удалить" Command="{Binding RemoveUser}"/>
+                    
+                    <MenuItem Header="Уволен" Command="{Binding RemoveUser}"/>
                     <MenuItem Header="Редактировать" Command="{Binding EditUser}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
@@ -29,7 +29,7 @@
                     <GridViewColumn Header="Должность" DisplayMemberBinding="{Binding IdPositionNavigation.Title}"/>
                     <GridViewColumn Header="Лаборатория" DisplayMemberBinding="{Binding IdLaboratotyNavigation.Name}"/>
                     <GridViewColumn Header="Логин" DisplayMemberBinding="{Binding Login}"/>
-                    <GridViewColumn Header="Дата увольнения" DisplayMemberBinding="{Binding DismissalDate}"/>
+                    <GridViewColumn Header="Дата увольнения" DisplayMemberBinding="{Binding DismissalDate, StringFormat=dd.MM.yyyy}"/>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -137,7 +137,7 @@ namespace Equipment_Client.VM.Responsible
                 .Include(s => s.IdPurposeOfUseNavigation)
                 .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id)
                 .Where(s => s.Approved == 0)
-                .Where(s => s.DateStart.DayOfYear > dateTime.DayOfYear)
+                .Where(s => s.DateStart > dateTime)
                 .ToList();
             try
             {
@@ -149,7 +149,7 @@ namespace Equipment_Client.VM.Responsible
                     .Include(s => s.IdPurposeOfUseNavigation)
                     .Where(s => s.IdEquipmentNavigation.IdReponsibleScientists == scientist.Id)
                     .Where(s => s.Approved == 0)
-                    .Where(s => s.DateStart.DayOfYear > dateTime.DayOfYear)
+                    .Where(s => s.DateStart > dateTime)
                     .Where(s => s.IdPurposeOfUse == SelectPurposeOfUse.Id)
                     .ToList();
                     Signal(nameof(Bookings));

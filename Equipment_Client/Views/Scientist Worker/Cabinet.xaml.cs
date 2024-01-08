@@ -1,8 +1,4 @@
-﻿using Equipment_Client.DB;
-using Equipment_Client.Models;
-using Equipment_Client.Tools;
-using Equipment_Client.VM;
-using Microsoft.EntityFrameworkCore;
+﻿using Equipment_Client.VM.Scientist_Worker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,20 +14,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Equipment_Client
+namespace Equipment_Client.Views.Scientist_Worker
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Логика взаимодействия для Cabinet.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Cabinet : Page
     {
-        public MainWindow()
+        public Cabinet(Models.Scientist scientist)
         {
             InitializeComponent();
-            DataContext = new MainWindowVM(window, password);
-
+            DataContext = new CabinetVM(scientist);
         }
-        
-        
     }
 }

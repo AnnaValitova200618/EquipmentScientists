@@ -11,6 +11,9 @@ namespace Equipment_Client.VM.Administrator
     {
         private Position selectPosition;
         private Visibility visibility = Visibility.Visible;
+        private Laboratory selectLaboratory;
+        private Visibility visibilityUpdatePassword = Visibility.Collapsed;
+        private Visibility visibilityText = Visibility.Collapsed;
 
         public Visibility Visibility
         {
@@ -21,7 +24,27 @@ namespace Equipment_Client.VM.Administrator
                 Signal();
             }
         }
+        public Visibility VisibilityUpdatePassword 
+        {
+            get => visibilityUpdatePassword;
+            set
+            {
+                visibilityUpdatePassword = value;
+                Signal();
+            }
+        }
+        public Visibility VisibilityText 
+        {
+            get => visibilityText;
+            set
+            {
+                visibilityText = value;
+                Signal();
+            }
+        }
+
         public CustomCommand Save { get; set; }
+        public CustomCommand UpdatePassword { get; set; }
         public Scientist Scientist { get; set; }
         public Position SelectPosition
         {
@@ -33,16 +56,31 @@ namespace Equipment_Client.VM.Administrator
             }
         }
         public List<Position> Positions { get; set; }
+        public Laboratory SelectLaboratory 
+        {
+            get => selectLaboratory;
+            set
+            {
+                selectLaboratory = value;
+                Signal();
+            }
+        }
+        public List<Laboratory> Laboratores { get; set; }
+        public string NewPassword { get; set; }
         public EditScientistVM(Scientist selectscientist, Window window)
         {
             try
             {
                 Scientist = selectscientist;
                 SelectPosition = Scientist.IdPositionNavigation;
+                SelectLaboratory = Scientist.IdLaboratotyNavigation;
                 Positions = DBInstance.GetInstance().Positions.ToList();
+                Laboratores = DBInstance.GetInstance().Laboratories.ToList();
+
                 if (Scientist.Id != 0)
                 {
                     Visibility = Visibility.Collapsed;
+                    VisibilityUpdatePassword = Visibility.Visible;
                 }
             }
             catch
@@ -51,6 +89,10 @@ namespace Equipment_Client.VM.Administrator
                 return;
             }
 
+            UpdatePassword = new CustomCommand(() =>
+            {
+                VisibilityText = Visibility.Visible;
+            });
             Save = new CustomCommand(() =>
             {
                 try
@@ -60,7 +102,8 @@ namespace Equipment_Client.VM.Administrator
                     SelectPosition == null ||
                     string.IsNullOrEmpty(Scientist.Lastname) ||
                     string.IsNullOrEmpty(Scientist.Login) ||
-                    string.IsNullOrEmpty(Scientist.Password))
+                    string.IsNullOrEmpty(Scientist.Password) ||
+                    SelectLaboratory == null)
                     {
                         MessageBox.Show("Необходимо заполнить все поля");
                         return;
@@ -82,20 +125,30 @@ namespace Equipment_Client.VM.Administrator
                                 Patronymic = Scientist.Patronymic,
                                 Lastname = Scientist.Lastname,
                                 Password = HashPass.GetPass(Scientist.Password),
-                                IdPosition = SelectPosition.Id
+                                IdPosition = SelectPosition.Id,
+                                IdLaboratoty = SelectLaboratory.Id,
                             });
                     }
+
+                    if(NewPassword != null)
+                    {
+                        Scientist.Password = HashPass.GetPass(NewPassword);
+                    }
+
                     Scientist.IdPosition = SelectPosition.Id;
+                    Scientist.IdLaboratoty = SelectLaboratory.Id;
                     DBInstance.GetInstance().SaveChanges();
                     MessageBox.Show("Оке");
                     window.Close();
                 }
+                
                 catch
                 {
                     MessageBox.Show("Проблема с БД");
                 }
 
             });
+            
         }
     }
 }

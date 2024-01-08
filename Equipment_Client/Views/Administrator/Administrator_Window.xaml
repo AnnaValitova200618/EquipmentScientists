@@ -12,31 +12,100 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
-                <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
-                <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
-            </StackPanel>
-            <Button Command="{Binding OpenScientists}" Height="60">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="5,0,0,0"  VerticalAlignment="Top">
+            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
+            <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
+        </StackPanel>
+        <Canvas Grid.Row="1" Cursor="">
+            <Button Command="{Binding OpenScientists}" Height="60" Canvas.Left="3" Canvas.Top="3" Panel.ZIndex="10">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/users.png"/>
                     <TextBlock Text="Сотрудники" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="addWorker">
+                                    <DoubleAnimation To="70" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="Opacity" TargetName="addWorker">
+                                    <DoubleAnimation To="1" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="listEquip">
+                                    <DoubleAnimation To="110" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="addEquip">
+                                    <DoubleAnimation To="69" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="Opacity" TargetName="addEquip">
+                                    <DoubleAnimation To="0" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
             </Button>
-            <Button Command="{Binding OpenEquipment}" Height="60">
-                <StackPanel Orientation="Horizontal" Width="195">
+
+            <Button x:Name="addEquip" Content="+ Добавить оборудование" Command="{Binding AddEquipment}" Canvas.Left="9" Canvas.Top="70" Opacity="0" Cursor="Hand"/>
+            <Button x:Name="listEquip" Command="{Binding OpenEquipment}" Height="60" Cursor="Hand" Canvas.Left="3" Canvas.Top="70" Panel.ZIndex="10">
+                <StackPanel Orientation="Horizontal" Width="195" Cursor="">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Оборудование" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
+                <Button.Triggers>
+                    <EventTrigger RoutedEvent="Button.Click">
+                        <EventTrigger.Actions>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="addWorker">
+                                    <DoubleAnimation To="3" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="Opacity" TargetName="addWorker">
+                                    <DoubleAnimation To="0" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="listEquip">
+                                    <DoubleAnimation To="70" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="(Canvas.Top)" TargetName="addEquip">
+                                    <DoubleAnimation To="136" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                            <BeginStoryboard>
+                                <Storyboard TargetProperty="Opacity" TargetName="addEquip">
+                                    <DoubleAnimation To="1" Duration="0:0:0.5"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger.Actions>
+                    </EventTrigger>
+                </Button.Triggers>
             </Button>
-            <!--<Button Command="{Binding OpenEquipment}" Height="60">
-                <StackPanel Orientation="Horizontal" Width="195">
-                    <Image Width="50" Height="50"  Source="/Image/user.png"/>
-                    <TextBlock Text="Профиль" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
-                </StackPanel>
-            </Button>-->
-        </StackPanel>
-        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" >
+            <Button x:Name="addWorker" Content="+ Добавить сотрудника" Command="{Binding AddUser}" Canvas.Left="30" Canvas.Top="70" Opacity="0"/>
+
+
+        </Canvas>
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal" Grid.Row="1">
             <Button  Command="{Binding Back}" Height="50">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="35" Height="35"  Source="/Image/exit.png"/>
@@ -44,6 +113,6 @@
                 </StackPanel>
             </Button>
         </StackPanel>
-        <Frame Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Background="#FFC1F7FD" BorderBrush="#FF585858" BorderThickness="5"/>
+        <Frame Grid.RowSpan="2" Grid.Column="1" Content="{Binding CurrentPage}" NavigationUIVisibility="Hidden" Background="#FFC1F7FD" BorderBrush="#FF585858" BorderThickness="5"/>
     </Grid>
 </Window>

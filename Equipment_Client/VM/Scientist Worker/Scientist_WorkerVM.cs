@@ -1,5 +1,6 @@
 ﻿using Equipment_Client.Tools;
 using Equipment_Client.Views;
+using Equipment_Client.Views.Scientist_Worker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace Equipment_Client.VM
         private Page currentPage;
         public CustomCommand OpenListEquipment { get; set; }
         public CustomCommand OpenListBookingEquipment { get; set; }
-        public CustomCommand OpenBookingEquipment { get; set; }
+        public CustomCommand OpenCabinet { get; set; }
         public CustomCommand Back { get; set; } 
 
         public Page CurrentPage 
@@ -39,10 +40,10 @@ namespace Equipment_Client.VM
             {
                 CurrentPage = new ListBookingEquipment(this);
             });
-            //OpenBookingEquipment = new CustomCommand(() =>
-            //{
-            //    CurrentPage = new BookingEquipment(scientist);
-            //});
+            OpenCabinet = new CustomCommand(() =>
+            {
+                CurrentPage = new Cabinet(scientist);
+            });
             Back = new CustomCommand(() =>
             {
                 new MainWindow().Show();

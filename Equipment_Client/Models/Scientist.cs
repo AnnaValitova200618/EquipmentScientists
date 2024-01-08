@@ -22,7 +22,7 @@ public partial class Scientist
 
     public DateTime? DismissalDate { get; set; }
 
-    public int? IdLaboratoty { get; set; }
+    public int IdLaboratoty { get; set; }
 
     [NotMapped]
     public string FIO { get; set; }
@@ -31,7 +31,7 @@ public partial class Scientist
 
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
 
-    public virtual Laboratory? IdLaboratotyNavigation { get; set; }
+    public virtual Laboratory IdLaboratotyNavigation { get; set; } = null!;
 
     public virtual Position IdPositionNavigation { get; set; } = null!;
 

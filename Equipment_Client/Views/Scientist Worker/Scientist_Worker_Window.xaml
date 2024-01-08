@@ -31,12 +31,12 @@
                     <TextBlock Text="Реестр бронирования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <!--<Button Command="{Binding OpenBookingEquipment}" Height="70">
+            <Button Command="{Binding OpenBookingEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
-                    <Image Width="50" Height="50"  Source="/Image/booking1.png"/>
-                    <TextBlock Text="Бронирование оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
+                    <Image Width="50" Height="50"  Source="/Image/user.png"/>
+                    <TextBlock Text="Мой кабинет" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
-            </Button>-->
+            </Button>
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Margin="6" Orientation="Horizontal" >
             <Button  Command="{Binding Back}" Height="50">
@@ -51,9 +51,3 @@
 </Window>
 
 
-<!--<Button HorizontalAlignment="Left" Style="{StaticResource Back}" Command="{Binding Back}" Width="50" Height="50" BorderBrush="{x:Null}">
-                <Button.Background>
-                    <ImageBrush ImageSource="/Image/exit.png"/>
-                </Button.Background>
-            </Button>
-            <Label Content="Выход" VerticalAlignment="Center"/>-->
