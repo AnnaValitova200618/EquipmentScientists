@@ -17,7 +17,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" Visibility="{Binding Visibility1}">
             <Label>
                 <Label.Content>
                     <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="250" FontWeight="Bold"/>
@@ -28,6 +28,34 @@
                       DisplayMemberPath="Title" FontSize="14"/>
             <Button Command="{Binding Reset}" Content="Сбросить фильтрацию" Cursor="Hand" />
         </StackPanel>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left"  Command="{Binding Collapsed}"
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                Foreground="{x:Null}" 
+                Visibility="{Binding Visibility1}">
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding Visible}"
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                Foreground="{x:Null}" 
+                RenderTransformOrigin="0.5,0.5" 
+                Visibility="{Binding Visibility2}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
         <DataGrid Background="#FFC1F7FD" ItemsSource="{Binding Bookings}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Название оборудования" Binding="{Binding IdEquipmentNavigation.Name}" IsReadOnly="True"/>
@@ -38,6 +66,7 @@
                 <DataGridCheckBoxColumn Header="Подтверждение" Binding="{Binding ApprovedID}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="7" Content="Обновить" Command="{Binding Update}"/>
         <Button HorizontalAlignment="Center" Width="200" Grid.Row="1" Content="Одобрить" Command="{Binding Approve}"/>
     </Grid>
 </Page>

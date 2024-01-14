@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Equipment_Client.Views"
         mc:Ignorable="d"
         x:Name="window"
-        Title="Редактирование сотрудника" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Редактирование сотрудника" MinHeight="450" MinWidth="800" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -15,24 +15,24 @@
         <ScrollViewer>
             <StackPanel  VerticalAlignment="Center"  Margin="10">
                 <Label Content="Имя" FontWeight="Bold"/>
-                <TextBox Text="{Binding Scientist.Firstname}" FontSize="14"/>
+                <TextBox Text="{Binding Scientist.Firstname}"/>
                 <Label Content="Отчество" FontWeight="Bold"/>
-                <TextBox Text="{Binding Scientist.Patronymic}" FontSize="14"/>
+                <TextBox Text="{Binding Scientist.Patronymic}"/>
                 <Label Content="Фамилия" FontWeight="Bold"/>
-                <TextBox Text="{Binding Scientist.Lastname}" FontSize="14"/>
+                <TextBox Text="{Binding Scientist.Lastname}"/>
                 <Label Content="Должность" FontWeight="Bold"/>
                 <ComboBox ItemsSource="{Binding Positions}" 
               SelectedItem="{Binding SelectPosition}" 
               DisplayMemberPath="Title" FontSize="14"/>
                 <Label Content="Лаборатория" FontWeight="Bold"/>
                 <ComboBox ItemsSource="{Binding Laboratores}" 
-              SelectedItem="{Binding SelectLaboratory}" 
-              DisplayMemberPath="Name" FontSize="14"/>
+                          SelectedItem="{Binding SelectLaboratory}" 
+                          DisplayMemberPath="Title" FontSize="14"/>      
                 <Label Content="Логин" Visibility="{Binding Visibility}" FontWeight="Bold"/>
-                <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}" FontSize="14"/>
+                <TextBox Text="{Binding Scientist.Login}" Visibility="{Binding Visibility}"/>
                 <Label Content="Пароль" Visibility="{Binding Visibility}" FontWeight="Bold"/>
-                <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}" FontSize="14"/>
-                <Button Content="Сотрдуник забыл пароль" Visibility="{Binding VisibilityUpdatePassword}" Command="{Binding UpdatePassword}" Cursor="Hand"/>
+                <TextBox Text="{Binding Scientist.Password}" Visibility="{Binding Visibility}"/>
+                <Button Content="Сотрдуник забыл пароль" Visibility="{Binding VisibilityUpdatePassword}" Command="{Binding UpdatePassword}" HorizontalAlignment="Left"/>
                 <Label Content="Новый пароль" Visibility="{Binding VisibilityText}"/>
                 <TextBox Visibility="{Binding VisibilityText}" Text="{Binding NewPassword}"/>
             </StackPanel>

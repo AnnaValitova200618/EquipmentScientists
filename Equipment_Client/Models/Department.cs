@@ -7,7 +7,7 @@ public partial class Department
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Title { get; set; } = null!;
 
     public virtual ICollection<Laboratory> Laboratories { get; } = new List<Laboratory>();
 }

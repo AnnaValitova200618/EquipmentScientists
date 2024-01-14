@@ -1,0 +1,147 @@
+﻿<Page x:Class="Equipment_Client.Views.Scientist_Worker.ReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Equipment_Client.Views.Scientist_Worker"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Report">
+
+    <Grid>
+        <ScrollViewer>
+            <StackPanel>
+                <Label Content="Отчёт об использовании научного оборудования" HorizontalAlignment="Center" FontWeight="Bold" FontSize="18"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="1.	Наименование оборудования: " FontWeight="Bold"/>
+                    <Label Content="{Binding Booking.IdEquipmentNavigation.Name}"/>
+                </StackPanel>
+                <Label Content="2.	Состояние оборудования: " FontWeight="Bold"/>
+                <TextBox SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding Report.Condition}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Добавить фотографии" HorizontalAlignment="Left" Grid.Column="1"/>
+                    <Border  BorderBrush="Black" BorderThickness="2,2,2,2" Margin="7">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <Image Height="150" Width="150" Margin="7"/>
+                            <Image Height="150" Width="150" Margin="7"/>
+                            <Image Height="150" Width="150" Margin="7"/>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+                <Label Content="3.	Наличие ЗИПа и расходных материалов" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Report.AvailabilityZipID}"/>
+                        <Label Content="Наличие ЗИП"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding Report.AvailabilityСonsumableID}"/>
+                        <Label Content="Наличие расходных материалов"/>
+                    </StackPanel>
+                </Grid>
+                <Label Content="4.	Информация о пользователе:" FontWeight="Bold"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Отдел: "/>
+                    <Label Content="{Binding Booking.IdScientistNavigation.IdLaboratotyNavigation.IdDepartmentNavigation.Title}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Лаборатория: "/>
+                    <Label Content="{Binding Booking.IdScientistNavigation.IdLaboratotyNavigation.Title}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="ФИО ответственного исполнителя: "/>
+                    <Label Content="{Binding Booking.IdScientistNavigation.FIO}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="5.	Время бронирования оборудования по плану с " FontWeight="Bold"/>
+                    <Label Content="{Binding Booking.DateStart}" FontWeight="Bold"/>
+                    <Label Content="по" FontWeight="Bold"/>
+                    <Label Content="{Binding Booking.DateEnd}" FontWeight="Bold"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="6.	Время бронирования оборудования фактически с  " FontWeight="Bold"/>
+                    <DatePicker FontSize="16" Width="150" SelectedDate="{Binding Report.DateStartFact}"/>
+                    <Label Content=" по "/>
+                    <DatePicker FontSize="16" Width="150" SelectedDate="{Binding Report.DateEndFact}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="7.	Дата монтажа/первого использования/погрузки на транспортное средство оборудования:" FontWeight="Bold"/>
+                    <DatePicker FontSize="16" Width="150" SelectedDate="{Binding Report.DateFirstUseEquipment}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="8.	Место использования оборудования:" FontWeight="Bold"/>
+                    <ComboBox FontSize="16" Width="400"
+                              ItemsSource="{Binding PlaceOfUses}"
+                              SelectedItem="{Binding SelectPlaceOfUse}"
+                              DisplayMemberPath="Title"/>            
+                </StackPanel>
+                <Label Content="a.	Описание:"/>
+                <TextBox SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding Report.DescriptionPlaceOfUse}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="b.	Номер официального документа "/>
+                    <TextBox Width="400" Text="{Binding Report.NumberDocument}"/>
+                </StackPanel>
+                    
+                
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="9.	Тип работы оборудования:" FontWeight="Bold"/>
+                    <ComboBox FontSize="16" Width="350"
+                              ItemsSource="{Binding Works}"
+                              SelectedItem="{Binding SelectWork}"
+                              DisplayMemberPath="Title"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="10.	Количество выполненных измерений/отбора проб:" FontWeight="Bold"/>
+                    <TextBox Grid.Column="1"  Width="130" Text="{Binding Report.NumberOfMeasurements}"/>
+                </StackPanel>
+                    
+                
+                <Label Content="11.	Характеристика работы оборудования в период эксплуатации: " FontWeight="Bold"/>
+                <TextBox SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding Report.CharacteristicsWork}"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="12.	Выполнение ремонта оборудование за время бронирования" FontWeight="Bold"/>
+                    <CheckBox IsChecked="{Binding RepairCheck}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" IsEnabled="{Binding Repair}">
+                    <Label Content="a.	Время простоя оборудования по причине ремонта с "/>
+                    <DatePicker  Width="150"/>
+                    <Label Content="по"/>
+                    <DatePicker  Width="150"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="13.	Замена расходных материалов" FontWeight="Bold"/>
+                    <CheckBox IsChecked="{Binding ConsumableCheck}"/>
+                </StackPanel>
+                <StackPanel IsEnabled="{Binding Consumable}">
+                    <Label Content="a.	Описание:"/>
+                    <TextBox SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="b.	Стоимость расходных материалов"/>
+                        <TextBox Grid.Column="1"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="14.	Дата демонтажа/последнего использования оборудования  за период бронирования" FontWeight="Bold"/>
+                    <DatePicker  Width="150" SelectedDate="{Binding Report.DateLastUseEquipment}" FontSize="16"/>
+                </StackPanel>
+                
+                <Label Content="15.	Наличие/отсутствие конфликтных ситуаций"  FontWeight="Bold"/>
+                <TextBox SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding Report.ConflictSituationScientists}"/>
+                <Button Content="Подписать" Command="{Binding Subscribe}"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

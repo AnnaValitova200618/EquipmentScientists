@@ -7,8 +7,6 @@ public partial class Repair
 {
     public int Id { get; set; }
 
-    public string Description { get; set; } = null!;
-
     public DateTime DateStartDowntime { get; set; }
 
     public DateTime DateEndDowntime { get; set; }

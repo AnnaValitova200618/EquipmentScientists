@@ -18,7 +18,7 @@
         <ListView Margin="15" Grid.Row="1" ItemsSource="{Binding Bookings}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название" DisplayMemberBinding="{Binding IdEquipmentNavigation.Name}"/>
+                    <GridViewColumn Header="Оборудованние" DisplayMemberBinding="{Binding IdEquipmentNavigation.Name}"/>
                     <GridViewColumn Header="Бронь" DisplayMemberBinding="{Binding IdScientistNavigation.FIO}"/>
                     <GridViewColumn Header="Деятельность бронирования" DisplayMemberBinding="{Binding IdPurposeOfUseNavigation.Title}"/>
                     <GridViewColumn Header="Дата начала" DisplayMemberBinding="{Binding DateStart, StringFormat=dd.MM.yy}"/>
@@ -26,7 +26,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+        <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="30" Content="Обновить" Command="{Binding Update}"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" Visibility="{Binding Visibility1}">
             <Label Content="Поиск по названию:" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal" >
                 <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="210" FontSize="14"/>
@@ -34,7 +35,7 @@
             </StackPanel>
             <Label>
                 <Label.Content>
-                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="235" FontWeight="Bold"/>
+                    <TextBlock Text="Сортировать по деятельности бронирования:" TextWrapping="Wrap" Width="248" FontWeight="Bold"/>
                 </Label.Content>
             </Label>
             <ComboBox ItemsSource="{Binding PurposeOfUses}"
@@ -42,5 +43,33 @@
                       DisplayMemberPath="Title" FontSize="14"/>
             <Button Command="{Binding Reset}" Content="Сбросить фильтрацию"/>
         </StackPanel>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left"  Command="{Binding Collapsed}"
+        Background="{x:Null}" 
+        BorderBrush="{x:Null}" 
+        Foreground="{x:Null}" 
+        Visibility="{Binding Visibility1}">
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding Visible}"
+        Background="{x:Null}" 
+        BorderBrush="{x:Null}" 
+        Foreground="{x:Null}" 
+        RenderTransformOrigin="0.5,0.5" 
+        Visibility="{Binding Visibility2}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>

@@ -42,7 +42,7 @@ namespace Equipment_Client.VM
             });
             OpenCabinet = new CustomCommand(() =>
             {
-                CurrentPage = new Cabinet(scientist);
+                CurrentPage = new Cabinet(scientist, this);
             });
             Back = new CustomCommand(() =>
             {

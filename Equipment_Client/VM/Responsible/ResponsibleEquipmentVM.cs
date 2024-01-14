@@ -16,7 +16,7 @@ namespace Equipment_Client.VM.Responsible
     {
         private List<Equipment> equipments;
         private Models.Type selectType;
-
+        
         public List<Models.Type> Types { get; set; }
         public Models.Type SelectType
         {
@@ -29,8 +29,7 @@ namespace Equipment_Client.VM.Responsible
         }
         public List<Status> Statuses { get; set; }
         public string Status { get; set; }
-        public CustomCommand Add { get; set; }
-        public CustomCommand CleanForm { get; set; }
+        
         public List<Equipment> Equipments
         {
             get => equipments;
@@ -41,6 +40,9 @@ namespace Equipment_Client.VM.Responsible
             }
         }
         public Equipment Equipment { get; set; } = new();
+        public CustomCommand Add { get; set; }
+        public CustomCommand CleanForm { get; set; }
+        
 
         public ResponsibleEquipmentVM(Scientist scientist)
         {
@@ -90,6 +92,7 @@ namespace Equipment_Client.VM.Responsible
                     MessageBox.Show("Проблемы с БД");
                 }
             });
+            
 
         }
 

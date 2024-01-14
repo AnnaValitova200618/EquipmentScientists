@@ -22,14 +22,14 @@
                         <!--<Setter Property="Background" Value="#FFC1F7FD"/>-->
                     </Style>
                     <Style TargetType="Label" BasedOn="{StaticResource MaterialDesignLabel}">
-                        <Setter Property="FontSize" Value="16"/>
+                        <Setter Property="FontSize" Value="17"/>
                     </Style>
                     <Style TargetType="ListView" BasedOn="{StaticResource MaterialDesignListView}">
-                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="FontSize" Value="15"/>
                     </Style>
-                    <!--<Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                        <Setter Property="FontSize" Value="14"/>
-                    </Style>-->
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
                     <!--<Style TargetType="PasswordBox" BasedOn="{StaticResource MaterialDesignFloatingHintRevealPasswordBox}">
                         <Setter Property="FontSize" Value="14"/>
                     </Style>-->

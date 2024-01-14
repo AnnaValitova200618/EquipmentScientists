@@ -194,7 +194,7 @@ public partial class EquipmentContext : DbContext
             entity.Property(e => e.DateFirstUseEquipment).HasColumnType("date");
             entity.Property(e => e.DateLastUseEquipment).HasColumnType("date");
             entity.Property(e => e.DateReturn).HasColumnType("date");
-            entity.Property(e => e.DateSigningReportReponsible).HasColumnType("date");
+            entity.Property(e => e.DateSigningReportReponsibleScientists).HasColumnType("date");
             entity.Property(e => e.DateSigningReportScientists).HasColumnType("date");
             entity.Property(e => e.DateStartFact).HasColumnType("date");
             entity.Property(e => e.IdBooking).HasColumnName("ID_Booking");

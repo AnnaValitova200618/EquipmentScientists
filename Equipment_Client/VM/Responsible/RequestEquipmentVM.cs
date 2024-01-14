@@ -17,10 +17,32 @@ namespace Equipment_Client.VM.Responsible
         private List<Booking> bookings;
         private PurposeOfUse selectPurposeOfUse;
         private readonly Scientist scientist;
+        private Visibility visibility = Visibility.Collapsed;
+        private Visibility visibility2 = Visibility.Visible;
 
+        public Visibility Visibility1
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                Signal();
+            }
+        }
+        public Visibility Visibility2
+        {
+            get => visibility2;
+            set
+            {
+                visibility2 = value;
+                Signal();
+            }
+        }
         public CustomCommand Approve { get; set; }
         public CustomCommand Reset { get; set; }
-
+        public CustomCommand Visible { get; set; }
+        public CustomCommand Collapsed { get; set; }
+        public CustomCommand Update { get; set; }
         public List<Booking> Bookings
         {
             get => bookings;
@@ -124,7 +146,25 @@ namespace Equipment_Client.VM.Responsible
                     return;
                 }
             });
-            
+
+            Visible = new CustomCommand(() =>
+            {
+                Visibility2 = Visibility.Collapsed;
+                Visibility1 = Visibility.Visible;
+                Signal(nameof(Visibility1));
+                Signal(nameof(Visibility2));
+            });
+            Collapsed = new CustomCommand(() =>
+            {
+                Visibility2 = Visibility.Visible;
+                Visibility1 = Visibility.Collapsed;
+                Signal(nameof(Visibility1));
+                Signal(nameof(Visibility2));
+            });
+            Update = new CustomCommand(() =>
+            {
+                GetBookings(scientist);
+            });
         }
 
         private void GetBookings(Scientist scientist)

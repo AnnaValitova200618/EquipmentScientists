@@ -1,4 +1,5 @@
-﻿using Equipment_Client.VM.Scientist_Worker;
+﻿using Equipment_Client.Models;
+using Equipment_Client.VM.Scientist_Worker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,14 @@ using System.Windows.Shapes;
 namespace Equipment_Client.Views.Scientist_Worker
 {
     /// <summary>
-    /// Логика взаимодействия для Cabinet.xaml
+    /// Логика взаимодействия для Report.xaml
     /// </summary>
-    public partial class Cabinet : Page
+    public partial class ReportPage : Page
     {
-        public Cabinet(Models.Scientist scientist, VM.Scientist_WorkerVM scientist_WorkerVM)
+        public ReportPage(Models.Booking selectBooking, Models.Scientist scientist, VM.Scientist_WorkerVM scientist_WorkerVM)
         {
             InitializeComponent();
-            DataContext = new CabinetVM(scientist, scientist_WorkerVM);
+            DataContext = new ReportVM(selectBooking, scientist, scientist_WorkerVM);
         }
     }
 }

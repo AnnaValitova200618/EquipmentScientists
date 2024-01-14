@@ -18,25 +18,26 @@
                 <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
                 <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
             </StackPanel>
-
+            <Button Command="{Binding OpenCabinet}" Height="70">
+                <StackPanel Orientation="Horizontal" Width="195">
+                    <Image Width="50" Height="50"  Source="/Image/user.png"/>
+                    <TextBlock Text="Мой кабинет" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
+                </StackPanel>
+            </Button>
             <Button Command="{Binding OpenListEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/book.png"/>
                     <TextBlock Text="Реестр оборудования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
+            
             <Button  Command="{Binding OpenListBookingEquipment}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/list.png"/>
                     <TextBlock Text="Реестр бронирования" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenBookingEquipment}" Height="70">
-                <StackPanel Orientation="Horizontal" Width="195">
-                    <Image Width="50" Height="50"  Source="/Image/user.png"/>
-                    <TextBlock Text="Мой кабинет" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="140"/>
-                </StackPanel>
-            </Button>
+            
         </StackPanel>
         <StackPanel VerticalAlignment="Bottom" Margin="6" Orientation="Horizontal" >
             <Button  Command="{Binding Back}" Height="50">

@@ -39,7 +39,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
     </Page.Resources>
     <Grid >
         <Grid.ColumnDefinitions>
@@ -53,9 +53,12 @@
                     <MenuItem Header="Забронировать" Command="{Binding Booking}"/>
                 </ContextMenu>
             </ListView.ContextMenu>
+            <ListView.ToolTip>
+                <ToolTip Placement="MousePoint">Нажмите ПКМ для действия</ToolTip>
+            </ListView.ToolTip>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Название оборудования" DisplayMemberBinding="{Binding Name}" />
+                    <GridViewColumn Header="Оборудованние" DisplayMemberBinding="{Binding Name}" />
                     <GridViewColumn Header="Тип" DisplayMemberBinding="{Binding IdTypeNavigation.Title}" />
                     <GridViewColumn Header="Ответственный за оборудование" DisplayMemberBinding="{Binding IdReponsibleScientistsNavigation.FIO}" />
                     <GridViewColumn Header="Габариты" DisplayMemberBinding="{Binding Dimansions}" />
@@ -64,7 +67,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" >
+        <Button VerticalAlignment="Top" HorizontalAlignment="Right" Margin="30" Content="Обновить" Command="{Binding Update}"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical" Background="#FF83EAEE" Visibility="{Binding Visibility1}">
             <Label Content="Поиск по названию:" FontWeight="Bold"/>
             <StackPanel Orientation="Horizontal">
                 <TextBox Text="{Binding Search, UpdateSourceTrigger=PropertyChanged}" Width="200" FontSize="14"/>
@@ -75,6 +79,35 @@
                       SelectedItem="{Binding SelectType}"
                       DisplayMemberPath="Title" FontSize="14"/>
             <Button Command="{Binding Reset}" Content="Сбросить фильтрацию"/>
+
         </StackPanel>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left"  Command="{Binding Collapsed}"
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                Foreground="{x:Null}" 
+                Visibility="{Binding Visibility1}">
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Grid.Column="1" Height="45" VerticalAlignment="Stretch" HorizontalAlignment="Left" Command="{Binding Visible}"
+                Background="{x:Null}" 
+                BorderBrush="{x:Null}" 
+                Foreground="{x:Null}" 
+                RenderTransformOrigin="0.5,0.5" 
+                Visibility="{Binding Visibility2}">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <RotateTransform Angle="180"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="/Image/right-arrow.png" Width="35" />
+                </StackPanel>
+            </Button.Content>
+        </Button>
     </Grid>
 </Page>

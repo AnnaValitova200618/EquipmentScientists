@@ -15,7 +15,10 @@
     <None Remove="Image\exit.png" />
     <None Remove="Image\list.png" />
     <None Remove="Image\pie.png" />
+    <None Remove="Image\reports.png" />
+    <None Remove="Image\right-arrow.png" />
     <None Remove="Image\search.png" />
+    <None Remove="Image\user.png" />
     <None Remove="Image\users.png" />
     <None Remove="Image\Закругленный вариант ЛОГОТИПА 1.jpg" />
     <None Remove="Views\free-icon-back-3114883.png" />
@@ -45,7 +48,16 @@
     <Resource Include="Image\pie.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Image\reports.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\right-arrow.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Image\search.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Image\user.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Image\users.png">

@@ -9,6 +9,72 @@
       Title="Cabinet">
 
     <Grid>
-        
+        <TabControl>
+            
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Бронирования" FontSize="16"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        <ListView ItemsSource="{Binding Bookings}" SelectedItem="{Binding SelectBooking}">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Составить отчёт" Command="{Binding MakeReport}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
+                            <ListView.ToolTip>
+                                <ToolTip Placement="MousePoint">Нажмите ПКМ для действия</ToolTip>
+                            </ListView.ToolTip>
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="Оборудование" DisplayMemberBinding="{Binding IdEquipmentNavigation.Name}"/>
+                                    <GridViewColumn Header="Деятельность бронирования" DisplayMemberBinding="{Binding IdPurposeOfUseNavigation.Title}"/>
+                                    <GridViewColumn Header="Дата начала бронирования" DisplayMemberBinding="{Binding DateStart, StringFormat=dd.MM.yyyy}"/>
+                                    <GridViewColumn Header="Дата окончания бронирования" DisplayMemberBinding="{Binding DateEnd, StringFormat=dd.MM.yyyy}"/>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Отчёты" FontSize="16"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel>
+                        
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="Профиль" FontSize="16"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <StackPanel VerticalAlignment="Center">
+                        <Label Content="Имя" FontWeight="Bold"/>
+                        <TextBox FontSize="16" Text="{Binding Scientist.Firstname}" IsEnabled="False"/>
+                        <Label Content="Отчество" FontWeight="Bold"/>
+                        <TextBox FontSize="16" Text="{Binding Scientist.Patronymic}" IsEnabled="False"/>
+                        <Label Content="Фамилия" FontWeight="Bold"/>
+                        <TextBox  FontSize="16" Text="{Binding Scientist.Lastname}" IsEnabled="False"/>
+                        <Label Content="Научное подразделение" FontWeight="Bold"/>
+                        <TextBox FontSize="16" Text="{Binding Scientist.IdLaboratotyNavigation.IdDepartmentNavigation.Name}" IsEnabled="False"/>
+                        <Label Content="Лаборатория" FontWeight="Bold"/>
+                        <TextBox FontSize="16" Text="{Binding Scientist.IdLaboratotyNavigation.Name}" IsEnabled="False"/>
+                        <Label Content="Логин" FontWeight="Bold"/>
+                        <TextBox FontSize="16" Text="{Binding Scientist.Login}" IsEnabled="False"/>
+                    </StackPanel>
+                </TabItem.Content>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Page>

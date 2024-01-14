@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Equipment_Client.Models;
 
@@ -12,14 +13,26 @@ public partial class Report
     public string Condition { get; set; } = null!;
 
     public byte? AvailabilityZip { get; set; }
+    [NotMapped]
+    public bool AvailabilityZipID
+    {
+        get => AvailabilityZip == 1;
+        set => AvailabilityZip = value ? (byte)1 : (byte)0;
+    }
 
     public byte? AvailabilityСonsumable { get; set; }
+    [NotMapped]
+    public bool AvailabilityСonsumableID
+    {
+        get => AvailabilityСonsumable == 1;
+        set => AvailabilityСonsumable = value ? (byte)1 : (byte)0;
+    }
 
-    public DateTime DateStartFact { get; set; }
+    public DateTime DateStartFact { get; set; } = DateTime.Now;
 
-    public DateTime DateEndFact { get; set; }
+    public DateTime DateEndFact { get; set; } = DateTime.Now;
 
-    public DateTime DateFirstUseEquipment { get; set; }
+    public DateTime DateFirstUseEquipment { get; set; } = DateTime.Now;
 
     public int IdPlaceOfUse { get; set; }
 
@@ -33,19 +46,19 @@ public partial class Report
 
     public string CharacteristicsWork { get; set; } = null!;
 
-    public DateTime DateLastUseEquipment { get; set; }
+    public DateTime DateLastUseEquipment { get; set; } = DateTime.Now;
 
-    public DateTime DateSigningReportReponsible { get; set; }
+    public DateTime DateSigningReportScientists { get; set; }
 
-    public DateTime DateReturn { get; set; }
+    public DateTime? DateReturn { get; set; } = DateTime.Now;
 
-    public string StatusEquipment { get; set; } = null!;
+    public string? StatusEquipment { get; set; }
 
     public string? ConflictSituationScientists { get; set; }
 
     public string? ConflictSituationResponsible { get; set; }
 
-    public DateTime? DateSigningReportScientists { get; set; }
+    public DateTime? DateSigningReportReponsibleScientists { get; set; }
 
     public virtual ICollection<FhotoPath> FhotoPaths { get; } = new List<FhotoPath>();
 

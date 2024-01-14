@@ -2,6 +2,7 @@
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
 using Equipment_Client.Views;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,10 @@ namespace Equipment_Client.VM
             {
                 try
                 {
-                    Scientist = DBInstance.GetInstance().Scientists.FirstOrDefault(s => s.Login == Login && s.Password == HashPass.GetPass(password.Password));
+                    Scientist = DBInstance.GetInstance().Scientists
+                    .Include(s=>s.IdLaboratotyNavigation)
+                    .Include(s => s.IdLaboratotyNavigation.IdDepartmentNavigation)
+                    .FirstOrDefault(s => s.Login == Login && s.Password == HashPass.GetPass(password.Password));
 
                     if (Scientist == null)
                     {

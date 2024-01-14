@@ -18,7 +18,28 @@ namespace Equipment_Client.VM.Administrator
         private Models.Type selectType;
         private string search = "";
         private Equipment selectedEquipment;
+        private Visibility visibility = Visibility.Collapsed;
+        private Visibility visibility2 = Visibility.Visible;
 
+        public Visibility Visibility1 
+        {
+            get => visibility;
+            set
+            {
+                visibility = value;
+                Signal();
+            }
+        }
+        public Visibility Visibility2 
+        {
+            get => visibility2;
+            set
+            {
+                visibility2 = value;
+                Signal();
+            }
+        }
+        
         public string Search
         {
             get => search;
@@ -60,6 +81,9 @@ namespace Equipment_Client.VM.Administrator
         
         public CustomCommand Reset { get; set; }
         public CustomCommand Booking { get; set; }
+        public CustomCommand Visible { get; set; }
+        public CustomCommand Collapsed { get; set; }
+        public CustomCommand Update { get; set; }
 
         private void DoSearch()
         {
@@ -87,6 +111,7 @@ namespace Equipment_Client.VM.Administrator
             {
                 Equipments = CheckStatusEquipment.CheckStatus();
                 Types = DBInstance.GetInstance().Types.ToList();
+                
             }
             catch
             {
@@ -115,9 +140,25 @@ namespace Equipment_Client.VM.Administrator
                 Signal(nameof(SelectType));
             });
 
-            
-            
-           
+            Visible = new CustomCommand(() =>
+            {
+                Visibility2 = Visibility.Collapsed;
+                Visibility1 = Visibility.Visible;
+                Signal(nameof(Visibility1));
+                Signal(nameof(Visibility2));
+            });
+            Collapsed = new CustomCommand(() =>
+            {
+                Visibility2 = Visibility.Visible;
+                Visibility1 = Visibility.Collapsed;
+                Signal(nameof(Visibility1));
+                Signal(nameof(Visibility2));
+            });
+            Update = new CustomCommand(() =>
+            {
+                scientist_WorkerVM.CurrentPage = new List_Equipment(scientist_WorkerVM, scientist);
+                
+            });
         }
     }
 }

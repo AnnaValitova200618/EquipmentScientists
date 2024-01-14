@@ -11,7 +11,7 @@ public partial class Laboratory
 
     public string Number { get; set; } = null!;
 
-    public string Name { get; set; } = null!;
+    public string Title { get; set; } = null!;
 
     public virtual Department IdDepartmentNavigation { get; set; } = null!;
 
