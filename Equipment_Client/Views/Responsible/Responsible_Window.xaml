@@ -36,7 +36,7 @@
                     <TextBlock Text="Диаграмма" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="145" />
                 </StackPanel>
             </Button>
-            <Button Command="{Binding OpenDiagramm}" Height="70">
+            <Button Command="{Binding OpenReports}" Height="70">
                 <StackPanel Orientation="Horizontal" Width="195">
                     <Image Width="50" Height="50"  Source="/Image/reports.png"/>
                     <TextBlock Text="Отчёты" Margin="6" TextWrapping="Wrap" VerticalAlignment="Center" FontWeight="Bold" FontSize="18" Width="145" />

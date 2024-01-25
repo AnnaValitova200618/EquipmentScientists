@@ -13,7 +13,7 @@ namespace Equipment_Client.VM
 {
     public class BookingEquipmentVM : BaseVM
     {
-        private Equipment selectEquipment;
+        
         private PurposeOfUse selectPurpose;
         public Booking Booking { get; set; } = new();
         public Scientist Scientist { get; set; }
@@ -71,7 +71,7 @@ namespace Equipment_Client.VM
                 }
                 try
                 {
-                    //Booking.IdEquipment = SelectEquipment.Id;
+                    
                     
                     Booking.IdScientist = scientist.Id;
                     Booking.IdPurposeOfUse = SelectPurpose.Id;
@@ -79,7 +79,7 @@ namespace Equipment_Client.VM
                     DBInstance.GetInstance().Bookings.Add(Booking);
                     DBInstance.GetInstance().SaveChanges();
 
-                   // CleanForm.Execute(null);
+                   
                     MessageBox.Show("Заявка на бронирование отправлена!");
                     scientist_WorkerVM.CurrentPage = new List_Equipment(scientist_WorkerVM, scientist);
                 }
@@ -93,10 +93,10 @@ namespace Equipment_Client.VM
             {
                 Booking = new();
                 SelectPurpose = null;
-                //SelectEquipment = null;
+               
                 Signal(nameof(SelectPurpose));
                 Signal(nameof(Booking));
-                //Signal(nameof(SelectEquipment));
+                
                 return;
             });
         }

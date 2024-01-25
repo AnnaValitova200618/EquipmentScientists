@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Equipment_Client.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Equipment_Client.DB;
+namespace Equipment_Client;
 
 public partial class EquipmentContext : DbContext
 {
@@ -37,8 +37,6 @@ public partial class EquipmentContext : DbContext
     public virtual DbSet<ReplacementOfConsumable> ReplacementOfConsumables { get; set; }
 
     public virtual DbSet<Report> Reports { get; set; }
-
-    public virtual DbSet<ReportCrossScientist> ReportCrossScientists { get; set; }
 
     public virtual DbSet<Scientist> Scientists { get; set; }
 
@@ -116,6 +114,7 @@ public partial class EquipmentContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.IdReport).HasColumnName("ID_Report");
+            entity.Property(e => e.IdScientist).HasColumnName("ID_Scientist");
 
             entity.HasOne(d => d.IdReportNavigation).WithMany(p => p.FhotoPaths)
                 .HasForeignKey(d => d.IdReport)
@@ -215,23 +214,6 @@ public partial class EquipmentContext : DbContext
                 .HasForeignKey(d => d.IdTypeOfWork)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Report_Plan");
-        });
-
-        modelBuilder.Entity<ReportCrossScientist>(entity =>
-        {
-            entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.IdReport).HasColumnName("ID_Report");
-            entity.Property(e => e.IdScientist).HasColumnName("ID_Scientist");
-
-            entity.HasOne(d => d.IdReportNavigation).WithMany(p => p.ReportCrossScientists)
-                .HasForeignKey(d => d.IdReport)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ReportCrossScientists_Report");
-
-            entity.HasOne(d => d.IdScientistNavigation).WithMany(p => p.ReportCrossScientists)
-                .HasForeignKey(d => d.IdScientist)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_ReportCrossScientists_Scientists");
         });
 
         modelBuilder.Entity<Scientist>(entity =>

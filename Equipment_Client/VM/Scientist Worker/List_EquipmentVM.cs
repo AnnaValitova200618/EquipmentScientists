@@ -131,6 +131,17 @@ namespace Equipment_Client.VM.Administrator
                     MessageBox.Show("Оборудование не может быть забранировано");
                     return;
                 }
+
+                var find = DBInstance.GetInstance().Bookings
+                .Include(s => s.Reports)
+                .FirstOrDefault(s => s.Reports.Count() == 0 && s.IdEquipment == SelectedEquipment.Id);
+
+                if (find != null)
+                {
+                    MessageBox.Show("Вы ещё не написали отчёт по выбранному оборудованию");
+                    return;
+                }
+
                 scientist_WorkerVM.CurrentPage = new BookingEquipment(scientist, SelectedEquipment, scientist_WorkerVM);
             });
 
@@ -156,8 +167,13 @@ namespace Equipment_Client.VM.Administrator
             });
             Update = new CustomCommand(() =>
             {
-                scientist_WorkerVM.CurrentPage = new List_Equipment(scientist_WorkerVM, scientist);
-                
+                foreach (var item in Equipments)
+                    DBInstance.GetInstance().Entry(item).Reload();
+
+                Equipments = CheckStatusEquipment.CheckStatus();
+
+                Signal(nameof(Equipments));
+
             });
         }
     }

@@ -27,6 +27,9 @@ public partial class Scientist
     [NotMapped]
     public string FIO { get; set; }
 
+    [NotMapped]
+    public bool Choice {  get; set; }
+
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 
     public virtual ICollection<Equipment> Equipment { get; } = new List<Equipment>();
@@ -35,5 +38,4 @@ public partial class Scientist
 
     public virtual Position IdPositionNavigation { get; set; } = null!;
 
-    public virtual ICollection<ReportCrossScientist> ReportCrossScientists { get; } = new List<ReportCrossScientist>();
 }

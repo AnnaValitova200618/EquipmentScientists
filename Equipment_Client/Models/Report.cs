@@ -27,7 +27,7 @@ public partial class Report
         get => AvailabilityСonsumable == 1;
         set => AvailabilityСonsumable = value ? (byte)1 : (byte)0;
     }
-
+    public string? Operators { get; set; }
     public DateTime DateStartFact { get; set; } = DateTime.Now;
 
     public DateTime DateEndFact { get; set; } = DateTime.Now;
@@ -50,7 +50,7 @@ public partial class Report
 
     public DateTime DateSigningReportScientists { get; set; }
 
-    public DateTime? DateReturn { get; set; } = DateTime.Now;
+    public DateTime? DateReturn { get; set; } 
 
     public string? StatusEquipment { get; set; }
 
@@ -72,5 +72,4 @@ public partial class Report
 
     public virtual ICollection<ReplacementOfConsumable> ReplacementOfConsumables { get; } = new List<ReplacementOfConsumable>();
 
-    public virtual ICollection<ReportCrossScientist> ReportCrossScientists { get; } = new List<ReportCrossScientist>();
 }

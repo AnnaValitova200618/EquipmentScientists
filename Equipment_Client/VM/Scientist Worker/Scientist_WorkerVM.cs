@@ -16,6 +16,7 @@ namespace Equipment_Client.VM
         public CustomCommand OpenListEquipment { get; set; }
         public CustomCommand OpenListBookingEquipment { get; set; }
         public CustomCommand OpenCabinet { get; set; }
+
         public CustomCommand Back { get; set; } 
 
         public Page CurrentPage 

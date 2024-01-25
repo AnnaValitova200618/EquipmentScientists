@@ -7,9 +7,9 @@ public partial class Repair
 {
     public int Id { get; set; }
 
-    public DateTime DateStartDowntime { get; set; }
+    public DateTime DateStartDowntime { get; set; } = DateTime.Now;
 
-    public DateTime DateEndDowntime { get; set; }
+    public DateTime DateEndDowntime { get; set; } = DateTime.Now;
 
     public int IdReport { get; set; }
 

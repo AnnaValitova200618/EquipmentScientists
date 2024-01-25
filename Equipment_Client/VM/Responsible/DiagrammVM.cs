@@ -52,7 +52,7 @@ namespace Equipment_Client.VM.Responsible
             try
             {
                 Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-                Years = new List<int>(new int[] {2023, 2024});
+                Years = new List<int>(new int[] {2023, 2024, 2025, 2026});
                 
                 Labels = new string[] { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
                 YFormatter = value => value.ToString("0");

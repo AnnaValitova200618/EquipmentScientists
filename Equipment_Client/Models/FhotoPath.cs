@@ -1,15 +1,18 @@
-﻿using System;
+﻿using Equipment_Client.Models;
+using System;
 using System.Collections.Generic;
 
-namespace Equipment_Client.Models;
+namespace Equipment_Client;
 
 public partial class FhotoPath
 {
     public int Id { get; set; }
 
-    public string Path { get; set; } = null!;
+    public byte[] Fhoto { get; set; } = null!;
 
     public int IdReport { get; set; }
+
+    public int IdScientist { get; set; }
 
     public virtual Report IdReportNavigation { get; set; } = null!;
 }

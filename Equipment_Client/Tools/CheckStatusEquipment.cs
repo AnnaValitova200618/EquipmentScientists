@@ -49,6 +49,8 @@ namespace Equipment_Client.Tools
                 .Include("IdTypeNavigation")
                 .Include(s => s.IdReponsibleScientistsNavigation)
                 .Include(s => s.IdStatusNavigation)
+                .Include(s => s.Bookings)
+                
                 .Where(s=>s.IdReponsibleScientists != 31)
                 .ToList();
         }

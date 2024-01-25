@@ -1,5 +1,6 @@
 ﻿using Equipment_Client.Tools;
 using Equipment_Client.Views;
+using Equipment_Client.Views.Responsible;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Equipment_Client.VM.Responsible
         public CustomCommand OpenResponsibleEquipment { get; set; }
         public CustomCommand OpenRequestEquipment { get; set; }
         public CustomCommand OpenDiagramm { get; set; }
+        public CustomCommand OpenReports { get; set; }
         public CustomCommand Back { get; set; }
         public Page CurrentPage
         {
@@ -42,6 +44,10 @@ namespace Equipment_Client.VM.Responsible
             OpenDiagramm = new CustomCommand(() =>
             {
                 CurrentPage = new Diagramm(scientist);
+            });
+            OpenReports = new CustomCommand(() =>
+            {
+                CurrentPage = new ReportsPage(scientist, this);
             });
             Back = new CustomCommand(() =>
             {

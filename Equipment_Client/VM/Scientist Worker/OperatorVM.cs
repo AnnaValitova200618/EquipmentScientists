@@ -1,19 +1,19 @@
 ﻿using Equipment_Client.DB;
 using Equipment_Client.Models;
 using Equipment_Client.Tools;
-using Equipment_Client.Views;
 using Equipment_Client.Views.Administrator;
-using Microsoft.EntityFrameworkCore;
+using Equipment_Client.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.EntityFrameworkCore;
 
-namespace Equipment_Client.VM.Administrator
+namespace Equipment_Client.VM.Scientist_Worker
 {
-    public class ListScientistsVM : BaseVM
+    public class OperatorVM : BaseVM
     {
         private Scientist selectedScientist;
         private List<Scientist> scientists;
@@ -40,9 +40,9 @@ namespace Equipment_Client.VM.Administrator
             }
         }
         public CustomCommand Reset { get; set; }
-        
-        public CustomCommand RemoveUser { get; set; }
-        public CustomCommand EditUser { get; set; }
+        public CustomCommand Choose { get; set; }
+
+
         public List<Scientist> Scientists
         {
             get => scientists;
@@ -70,7 +70,9 @@ namespace Equipment_Client.VM.Administrator
                              s.Patronymic.Contains(Search) ||
                              s.Lastname.Contains(Search) ||
                              s.Login.Contains(Search))
-                             .Where(s => s.Id != 31).ToList();
+                             .Where(s => s.Id != 31 && s.IdPosition != 1)
+                             .ToList();
+
                 if (SelectedPosition != null)
                 {
                     scientists = scientists.Where(s => s.IdPosition == SelectedPosition.Id).ToList();
@@ -84,12 +86,12 @@ namespace Equipment_Client.VM.Administrator
             }
 
         }
-        public ListScientistsVM()
+        public OperatorVM(ReportVM reportVM, Window window)
         {
             try
             {
                 TakeListScientists();
-                Positions = DBInstance.GetInstance().Positions.ToList();
+                Positions = DBInstance.GetInstance().Positions.Where(s=>s.Id != 1).ToList();
             }
             catch
             {
@@ -97,41 +99,20 @@ namespace Equipment_Client.VM.Administrator
                 return;
             }
 
-
-            RemoveUser = new CustomCommand(() =>
+            Choose = new CustomCommand(() =>
             {
-                
-                    if (SelectedScientist == null)
-                    {
-                        MessageBox.Show("Необходимо выбрать пользователя");
-                        return;
-                    }
-                    if(SelectedScientist.DismissalDate != null)
-                    {
-                        MessageBox.Show("Пользователь уже уволен");
-                        return;
-                    }
-                    else
-                    {
-                        new DismissalScientist(SelectedScientist).ShowDialog();
-                        TakeListScientists();
-                }
-                
-                
-            });
+                var chooseOperator = Scientists.Where(s => s.Choice).ToList();
 
-            
-            EditUser = new CustomCommand(() =>
-            {
-                if (SelectedScientist == null)
+                if(chooseOperator.Count() > 3)
                 {
-                    MessageBox.Show("Необходимо выбрать пользователя");
+                    MessageBox.Show("Нельзя выбирать больше трёх операторов!");
                     return;
                 }
 
-                new EditScientist(SelectedScientist).ShowDialog();
-                TakeListScientists();
+                reportVM.SelectOperators = chooseOperator;
+                window.Close();
             });
+            
             Reset = new CustomCommand(() =>
             {
                 SelectedPosition = null;
@@ -144,7 +125,7 @@ namespace Equipment_Client.VM.Administrator
             Scientists = DBInstance.GetInstance().Scientists
                 .Include("IdPositionNavigation")
                 .Include("IdLaboratotyNavigation")
-                .Where(s=>s.Id != 31)
+                .Where(s => s.Id != 31 && s.IdPosition != 1)
                 .ToList();
         }
     }
