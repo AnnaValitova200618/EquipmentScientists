@@ -51,5 +51,6 @@ namespace Equipment_Client.Views.Scientist_Worker
             
             ((ReportVM)DataContext).RemoveImage((byte[])button.Tag);
         }
+        
     }
 }

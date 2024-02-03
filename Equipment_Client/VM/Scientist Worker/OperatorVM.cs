@@ -70,7 +70,7 @@ namespace Equipment_Client.VM.Scientist_Worker
                              s.Patronymic.Contains(Search) ||
                              s.Lastname.Contains(Search) ||
                              s.Login.Contains(Search))
-                             .Where(s => s.Id != 31 && s.IdPosition != 1)
+                             .Where(s => s.Id != 31 && s.IdPosition != 1 && s.DismissalDate == null)
                              .ToList();
 
                 if (SelectedPosition != null)
@@ -125,7 +125,7 @@ namespace Equipment_Client.VM.Scientist_Worker
             Scientists = DBInstance.GetInstance().Scientists
                 .Include("IdPositionNavigation")
                 .Include("IdLaboratotyNavigation")
-                .Where(s => s.Id != 31 && s.IdPosition != 1)
+                .Where(s => s.Id != 31 && s.IdPosition != 1 && s.DismissalDate == null)
                 .ToList();
         }
     }

@@ -11,9 +11,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Spire.Doc;
 using System.Windows;
+using Microsoft.Identity.Client;
+using System.Windows.Controls;
+using Spire.Doc.Documents;
+using Spire.Doc.Fields;
+using System.Diagnostics;
 
 namespace Equipment_Client.VM.Scientist_Worker
 {
@@ -30,6 +34,7 @@ namespace Equipment_Client.VM.Scientist_Worker
         private Visibility visibilityBlock = Visibility.Visible;
         private Visibility visibilityResponsable = Visibility.Collapsed;
         private Visibility visibilityEnd = Visibility.Visible;
+        private Visibility word = Visibility.Collapsed;
         public Booking Booking { get; set; }
         public Report Report { get; set; } = new();
         public Repair Repair { get; set; } = new();
@@ -155,14 +160,22 @@ namespace Equipment_Client.VM.Scientist_Worker
                 Signal();
             }
         }
-
+        public Visibility Word 
+        {
+            get => word;
+            set
+            {
+                word = value;
+                Signal();
+            }
+        }
         public string Operators { get; set; }
         public List<Scientist> SelectOperators { get; set; }
-
+        public ObservableCollection<byte[]> ImagesResponsable { get; set; } = new();
         public ObservableCollection<byte[]> Images { get; set; } = new ();
         public CustomCommand AddImage { get; set; }
         public CustomCommand Subscribe { get; set; }
-        public ObservableCollection<byte[]> ImagesResponsable { get; set; } = new();
+        public CustomCommand Export { get; set; }
         public CustomCommand AddImageResponsable { get; set; }
         public CustomCommand SubscribeResponsable { get; set; }
         public CustomCommand OpenOperatorWindow { get; set; }
@@ -374,6 +387,7 @@ namespace Equipment_Client.VM.Scientist_Worker
                     VisibilityResponsable = Visibility.Visible;
                     BlockEnd = false;
                     VisibilityEnd = Visibility.Collapsed;
+                    Word = Visibility.Visible;
 
                     foreach (var image in selectReport.FhotoPaths.Where(s => s.IdScientist == Report.
                     IdBookingNavigation.IdEquipmentNavigation.IdReponsibleScientistsNavigation.Id))
@@ -387,7 +401,21 @@ namespace Equipment_Client.VM.Scientist_Worker
                 MessageBox.Show("Опаньки >:)");
                 return;
             }
-            
+            Export = new CustomCommand(() =>
+            {
+                try
+                {
+                    DirectionCreator.Images.Clear();
+                    DirectionCreator.ImagesResponsable.Clear();
+                    DirectionCreator.GetDirections(Report);
+                   
+                }
+                catch(Exception ex) 
+                {
+                    MessageBox.Show("Опаньки >:)");
+                    return;
+                }
+            });
         }
 
         public ReportVM(Report selectReport, Scientist scientist, ResponsibleWindowVM responsibleWindowVM)
@@ -435,6 +463,7 @@ namespace Equipment_Client.VM.Scientist_Worker
                     VisibilityResponsable = Visibility.Visible;
                     BlockEnd = false;
                     VisibilityEnd = Visibility.Collapsed;
+                    Word = Visibility.Visible;
 
                     foreach (var image in selectReport.FhotoPaths.Where(s => s.IdScientist == Report.
                     IdBookingNavigation.IdEquipmentNavigation.IdReponsibleScientistsNavigation.Id))
@@ -480,7 +509,7 @@ namespace Equipment_Client.VM.Scientist_Worker
             });
             SubscribeResponsable = new CustomCommand(() =>
             {
-                if(ImagesResponsable.Count == 0 || Report.StatusEquipment.IsNullOrEmpty())
+                if(ImagesResponsable.Count == 0 || Report.StatusEquipment.IsNullOrEmpty()  || Report.DateReturn == null)
                 {
                     MessageBox.Show("Не все данные заполнены");
                     return;
@@ -512,8 +541,22 @@ namespace Equipment_Client.VM.Scientist_Worker
                     MessageBox.Show("Опаньки >:)");
                     return;
                 }
+                Export = new CustomCommand(() =>
+                {
+                    
+                });
             });
         }
+
+        private static void OpenPreviewFile(string path)
+        {
+            if (File.Exists(path) == false)
+            {
+                return;
+            }
+            Process.Start(path);
+        }
+
 
         internal void RemoveImage(byte[] image)
         {

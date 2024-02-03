@@ -134,7 +134,8 @@ namespace Equipment_Client.VM.Administrator
 
                 var find = DBInstance.GetInstance().Bookings
                 .Include(s => s.Reports)
-                .FirstOrDefault(s => s.Reports.Count() == 0 && s.IdEquipment == SelectedEquipment.Id);
+                .FirstOrDefault(s => s.Reports.Count() == 0 && s.IdEquipment == SelectedEquipment.Id &&
+                s.IdScientist == scientist.Id);
 
                 if (find != null)
                 {

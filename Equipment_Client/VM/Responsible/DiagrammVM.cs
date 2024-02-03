@@ -52,11 +52,18 @@ namespace Equipment_Client.VM.Responsible
             try
             {
                 Equipments = DBInstance.GetInstance().Equipment.Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
-                Years = new List<int>(new int[] {2023, 2024, 2025, 2026});
-                
+                Years = new List<int>(new int[] {2022});
                 Labels = new string[] { "январь", "февраль", "март", "апрель", "май", "июнь", "июль", "август", "сентябрь", "октябрь", "ноябрь", "декабрь" };
                 YFormatter = value => value.ToString("0");
+                int yearNow = DateTime.Now.Year;
+                
 
+                while (Years[Years.Count - 1] < yearNow) // Years[Years.Count - 1] - обращение к последнему элементу коллекции
+                {
+                    int lastYear = Years[Years.Count - 1];
+                    Years.Add(lastYear + 1);
+                }
+                
                 Sort = new CustomCommand(() =>
                 {
                     

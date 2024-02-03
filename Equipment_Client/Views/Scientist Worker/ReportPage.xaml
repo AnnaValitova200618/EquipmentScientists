@@ -97,11 +97,8 @@
                 </StackPanel>
                 <Label Content="a.	Описание:" FontSize="18"/>
                 <TextBox FontSize="18" SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding Report.DescriptionPlaceOfUse}" IsEnabled="{Binding Block}"/>
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="b.	Номер официального документа " FontSize="18"/>
-                    <TextBox Width="400" Text="{Binding Report.NumberDocument}" FontSize="18" IsEnabled="{Binding Block}"/>
-                </StackPanel>
-                    
+                <Label Content="b.	Основание: " FontSize="18"/>
+                <TextBox Text="{Binding Report.NumberDocument}" FontSize="18" IsEnabled="{Binding Block}"/>
                 
                 <StackPanel Orientation="Horizontal">
                     <Label Content="9.	Тип работы оборудования:" FontSize="18" FontWeight="Bold"/>
@@ -112,10 +109,10 @@
                               IsEnabled="{Binding Block}"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="10.	Количество выполненных измерений/отбора проб:" FontSize="18" FontWeight="Bold"/>
-                    <TextBox  FontSize="18" Width="130" Text="{Binding Report.NumberOfMeasurements}" IsEnabled="{Binding Block}"/>
-                </StackPanel>
+                
+               <Label Content="10.	Количество выполненных измерений/отбора проб:" FontSize="18" FontWeight="Bold"/>
+               <TextBox  FontSize="18" Text="{Binding Report.NumberOfMeasurements}" IsEnabled="{Binding Block}"/>
+                
 
 
                 <Label Content="11.	Характеристика работы оборудования в период эксплуатации: " FontSize="18" FontWeight="Bold"/>
@@ -137,14 +134,6 @@
                 <StackPanel IsEnabled="{Binding Consumable}">
                     <Label Content="a.	Описание:" FontSize="18"/>
                     <TextBox FontSize="18" SpellCheck.IsEnabled="True" Language="ru-ru" TextWrapping="Wrap" MaxHeight="110" Text="{Binding ReplacementOfConsumable.Description}"/>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <Label Content="b.	Стоимость расходных материалов" FontSize="18"/>
-                        <TextBox FontSize="18" Text="{Binding ReplacementOfConsumable.CostOfConsumables}" Grid.Column="1"/>
-                    </Grid>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <Label FontSize="18" Content="14.	Дата демонтажа/последнего использования оборудования  за период бронирования" FontWeight="Bold"/>
@@ -156,8 +145,9 @@
                 <Button Content="Подписать" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200"
                         Command="{Binding Subscribe}" Visibility="{Binding VisibilityBlock}"/>
 
-                <Border BorderBrush="Black" BorderThickness="0,3,0,0" Visibility="{Binding VisibilityResponsable}" >
-                    <StackPanel>
+                <Border BorderBrush="Black" BorderThickness="0,3,0,0">
+                </Border>
+                <StackPanel  Visibility="{Binding VisibilityResponsable}" >
                         <StackPanel Orientation="Horizontal">
                             <Label Content="16.	Дата возврата оборудования  владельцу :" FontSize="18" FontWeight="Bold"/>
                             <DatePicker FontSize="18" Width="150" SelectedDate="{Binding Report.DateReturn}" IsEnabled="{Binding BlockEnd}"/>
@@ -171,24 +161,24 @@
                             <Border  BorderBrush="Black" BorderThickness="2,2,2,2" Margin="7" MinHeight="250" MinWidth="250" HorizontalAlignment="Left" IsEnabled="{Binding BlockEnd}">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
                                     <ListBox ItemsSource="{Binding ImagesResponsable}">
-                                        <ListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ListBox.ItemsPanel>
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <Image Height="300" Width="300" Source="{Binding }"/>
-                                                    <Button VerticalAlignment="Top" HorizontalAlignment="Right" Content="X" FontWeight="Bold" 
-                                                            Click="RemoveImage" 
-                                                            Tag="{Binding }" 
-                                                            Height="30" Width="30"/>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </StackPanel>
+                                    <ListBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListBox.ItemsPanel>
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Image Height="300" Width="300" Source="{Binding }"/>
+                                                <Button VerticalAlignment="Top" HorizontalAlignment="Right" Content="X" FontWeight="Bold" 
+                                                        Click="RemoveImage" 
+                                                        Tag="{Binding }" 
+                                                        Height="30" Width="30"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </StackPanel>
                             </Border>
                         </StackPanel>
                         <StackPanel>
@@ -197,8 +187,8 @@
                         </StackPanel>
                         <Button Content="Подписать" Visibility="{Binding VisibilityEnd}" Command="{Binding SubscribeResponsable}" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200"/>
                     </StackPanel>
-                </Border>
                 
+                <Button Content="Экспорт в Word" Command="{Binding Export}" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200" Visibility="{Binding Word}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -174,7 +174,6 @@ public partial class EquipmentContext : DbContext
         modelBuilder.Entity<ReplacementOfConsumable>(entity =>
         {
             entity.Property(e => e.Id).HasColumnName("ID");
-            entity.Property(e => e.CostOfConsumables).HasColumnType("money");
             entity.Property(e => e.IdReport).HasColumnName("ID_Report");
 
             entity.HasOne(d => d.IdReportNavigation).WithMany(p => p.ReplacementOfConsumables)

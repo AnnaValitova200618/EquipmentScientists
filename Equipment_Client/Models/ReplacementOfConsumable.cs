@@ -9,8 +9,6 @@ public partial class ReplacementOfConsumable
 
     public string Description { get; set; } = null!;
 
-    public decimal CostOfConsumables { get; set; }
-
     public int IdReport { get; set; }
 
     public virtual Report IdReportNavigation { get; set; } = null!;

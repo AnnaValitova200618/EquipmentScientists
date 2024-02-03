@@ -42,7 +42,7 @@ public partial class Report
 
     public int IdTypeOfWork { get; set; }
 
-    public int NumberOfMeasurements { get; set; }
+    public string NumberOfMeasurements { get; set; } = null!;
 
     public string CharacteristicsWork { get; set; } = null!;
 
