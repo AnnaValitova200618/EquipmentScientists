@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Equipment_Client.VM.Scientist_Worker
 {
@@ -17,7 +18,31 @@ namespace Equipment_Client.VM.Scientist_Worker
     {
         private Booking selectBooking;
         private Report selectReport;
+        private List<Equipment> equipments;
+        private Models.Type selectType;
 
+        public List<Models.Type> Types { get; set; }
+        public Models.Type SelectType
+        {
+            get => selectType;
+            set
+            {
+                selectType = value;
+                Signal();
+            }
+        }
+        public List<Status> Statuses { get; set; }
+        public string Status { get; set; }
+
+        public List<Equipment> Equipments
+        {
+            get => equipments;
+            set
+            {
+                equipments = value;
+                Signal();
+            }
+        }
         public List<Booking> Bookings { get; set; }
         public Booking SelectBooking 
         {
@@ -43,22 +68,30 @@ namespace Equipment_Client.VM.Scientist_Worker
         public CustomCommand LookReport { get; set; }
         public CabinetVM(Scientist scientist, Scientist_WorkerVM scientist_WorkerVM)
         {
-            Scientist = scientist;
-            Bookings = DBInstance.GetInstance().Bookings
-                .Where(s=>s.IdScientist == scientist.Id && s.Approved == 1 && s.Reports.Count == 0 && s.DateEnd < DateTime.Now)
-                .Include(s=>s.IdEquipmentNavigation)
-                .Include(s=>s.IdPurposeOfUseNavigation)
-                .Include(s=>s.Reports)
-                .ToList();
-            Reports = DBInstance.GetInstance().Reports
-                .Where(s => s.IdBookingNavigation.IdScientist == scientist.Id)
-                .Include(s=>s.IdBookingNavigation.IdEquipmentNavigation)
-                .Include(s=>s.FhotoPaths)
-                .Include(s => s.IdPlaceOfUseNavigation)
-                .Include(s => s.IdTypeOfWorkNavigation)
-                .Include(s=>s.Repairs)
-                .Include(s => s.ReplacementOfConsumables)
-                .ToList();
+            try
+            {
+                Scientist = scientist;
+                Bookings = DBInstance.GetInstance().Bookings
+                    .Where(s => s.IdScientist == Scientist.Id && s.Approved == 1 && s.Reports.Count == 0 && s.DateEnd < DateTime.Now)
+                    .Include(s => s.IdEquipmentNavigation)
+                    .Include(s => s.IdPurposeOfUseNavigation)
+                    .Include(s => s.Reports)
+                    .ToList();
+                Reports = DBInstance.GetInstance().Reports
+                    .Where(s => s.IdBookingNavigation.IdScientist == Scientist.Id)
+                    .Include(s => s.IdBookingNavigation.IdEquipmentNavigation)
+                    .Include(s => s.FhotoPaths)
+                    .Include(s => s.IdPlaceOfUseNavigation)
+                    .Include(s => s.IdTypeOfWorkNavigation)
+                    .Include(s => s.Repairs)
+                    .Include(s => s.ReplacementOfConsumables)
+                    .ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
 
             MakeReport = new CustomCommand(() =>
             {
@@ -67,7 +100,7 @@ namespace Equipment_Client.VM.Scientist_Worker
                     MessageBox.Show("Необходимо выбрать бронирование");
                     return;
                 }
-                scientist_WorkerVM.CurrentPage = new ReportPage(SelectBooking, scientist, scientist_WorkerVM);
+                scientist_WorkerVM.CurrentPage = new ReportPage(SelectBooking, Scientist, scientist_WorkerVM);
             });
             LookReport = new CustomCommand(() =>
             {
@@ -76,8 +109,38 @@ namespace Equipment_Client.VM.Scientist_Worker
                     MessageBox.Show("Необходимо выбрать бронирование");
                     return;
                 }
-                scientist_WorkerVM.CurrentPage = new ReportPage(SelectReport, scientist, scientist_WorkerVM);
+                scientist_WorkerVM.CurrentPage = new ReportPage(SelectReport, Scientist, scientist_WorkerVM);
             });
+        }
+
+        public CabinetVM(Scientist scientist)
+        {
+            try
+            {
+                Scientist = scientist;
+                GetEquipments(Scientist);
+                Types = DBInstance.GetInstance().Types.ToList();
+                Statuses = DBInstance.GetInstance().Statuses.ToList();
+            }
+            catch
+            {
+                MessageBox.Show("Проблема с БД");
+                return;
+            }
+        }
+
+        public void Save(DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                DBInstance.GetInstance().SaveChanges();
+            }
+        }
+        private List<Equipment> GetEquipments(Scientist scientist)
+        {
+            return Equipments = CheckStatusEquipment.CheckStatus()
+                .Where(s => s.IdReponsibleScientists == scientist.Id).ToList();
+
         }
     }
 }

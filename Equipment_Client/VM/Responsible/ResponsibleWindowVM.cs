@@ -14,10 +14,11 @@ namespace Equipment_Client.VM.Responsible
     {
         private Page currentPage;
 
-        public CustomCommand OpenResponsibleEquipment { get; set; }
+       
         public CustomCommand OpenRequestEquipment { get; set; }
         public CustomCommand OpenDiagramm { get; set; }
         public CustomCommand OpenReports { get; set; }
+        public CustomCommand OpenCabinet { get; set; }
         public CustomCommand Back { get; set; }
         public Page CurrentPage
         {
@@ -31,12 +32,9 @@ namespace Equipment_Client.VM.Responsible
 
         public ResponsibleWindowVM(Models.Scientist scientist, System.Windows.Window window)
         {
-            CurrentPage = new ResponsibleEquipment(scientist);
+            CurrentPage = new CabinetResponsible(scientist);
 
-            OpenResponsibleEquipment = new CustomCommand(() =>
-            {
-                CurrentPage = new ResponsibleEquipment(scientist);
-            });
+            
             OpenRequestEquipment = new CustomCommand(() =>
             {
                 CurrentPage = new RequestEquipment(scientist);
@@ -48,6 +46,10 @@ namespace Equipment_Client.VM.Responsible
             OpenReports = new CustomCommand(() =>
             {
                 CurrentPage = new ReportsPage(scientist, this);
+            });
+            OpenCabinet = new CustomCommand(() =>
+            {
+                CurrentPage = new CabinetResponsible(scientist);
             });
             Back = new CustomCommand(() =>
             {

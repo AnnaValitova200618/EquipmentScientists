@@ -541,26 +541,35 @@ namespace Equipment_Client.VM.Scientist_Worker
                     MessageBox.Show("Опаньки >:)");
                     return;
                 }
-                Export = new CustomCommand(() =>
+                
+            });
+            Export = new CustomCommand(() =>
+            {
+                try
                 {
-                    
-                });
+                    DirectionCreator.Images.Clear();
+                    DirectionCreator.ImagesResponsable.Clear();
+                    DirectionCreator.GetDirections(Report);
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Опаньки >:)");
+                    return;
+                }
             });
         }
 
-        private static void OpenPreviewFile(string path)
-        {
-            if (File.Exists(path) == false)
-            {
-                return;
-            }
-            Process.Start(path);
-        }
+        
 
 
         internal void RemoveImage(byte[] image)
         {
             Images.Remove(image);
+        }
+        internal void RemoveImageResponsible(byte[] image)
+        {
+            ImagesResponsable.Remove(image);
         }
         static double ConvertBytesToMegabytes(long bytes)
         {

@@ -51,6 +51,12 @@ namespace Equipment_Client.Views.Scientist_Worker
             
             ((ReportVM)DataContext).RemoveImage((byte[])button.Tag);
         }
-        
+        private void RemoveImageResponsible(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+
+            ((ReportVM)DataContext).RemoveImageResponsible((byte[])button.Tag);
+        }
+
     }
 }

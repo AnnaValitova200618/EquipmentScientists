@@ -65,8 +65,8 @@ namespace Equipment_Client.Tools
             {
                 Paragraph p = tableRow2_2.Cells[i].Paragraphs[0];
                 docPicture1 = p.AppendPicture(Images[i]);
-                docPicture1.Width = 150;
-                docPicture1.Height = 150;
+                docPicture1.Width = 100;
+                docPicture1.Height = 100;
             }
 
             Table table3 = section.Tables[2] as Table;//наличие ЗИП и расходных материалов
@@ -230,10 +230,10 @@ namespace Equipment_Client.Tools
             DocPicture docPicture2;
             for (int i = 0; i < ImagesResponsable.Count; i++)
             {
-                Paragraph p = tableRow2_2.Cells[i].Paragraphs[0];
-                docPicture2 = p.AppendPicture(Images[i]);
-                docPicture2.Width = 150;
-                docPicture2.Height = 150;
+                Paragraph p = tableRow16_2.Cells[i].Paragraphs[0];
+                docPicture2 = p.AppendPicture(ImagesResponsable[i]);
+                docPicture2.Width = 100;
+                docPicture2.Height = 100;
             }
 
             Table table17 = section.Tables[16] as Table;
@@ -288,7 +288,7 @@ namespace Equipment_Client.Tools
             }
             catch 
             {
-                MessageBox.Show("");
+                MessageBox.Show("Закройте предыдущий файл", "Несерьёзная ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
         }

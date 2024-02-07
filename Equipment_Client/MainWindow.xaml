@@ -17,12 +17,12 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="130" HorizontalAlignment="Left"/>
-            <TextBlock FontSize="19" TextWrapping="Wrap" Width="360" Text="Тихоокенаский океанологический институ Дальневосточного отделения Российской академии наук" TextAlignment="Center" VerticalAlignment="Center"/>
+            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="110" HorizontalAlignment="Left"/>
+            <TextBlock FontSize="37" TextWrapping="Wrap" Width="360" Text="ScientistEquipment Manager" FontWeight="Bold" Foreground="#FF3A3535" VerticalAlignment="Center"/>
         </StackPanel>
         
         <StackPanel Grid.Row="1" VerticalAlignment="Center" Width="490">
-            <Label Content="Авторизация пользователя" HorizontalAlignment="Center" FontSize="20" FontWeight="Bold" Height="60"/>
+            <Label Content="Авторизация пользователя" HorizontalAlignment="Center" FontSize="24" FontWeight="Bold" Height="60"/>
             <Label Content="Логин" FontSize="18"/>
             <TextBox FontSize="18" Text="{Binding Login}" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             <Label Content="Пароль" FontSize="18"/>

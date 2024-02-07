@@ -16,9 +16,9 @@
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Horizontal" Margin="5,0,0,0"  VerticalAlignment="Top">
-            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="50" Height="50"/>
-            <Label Content="ТОИ ДВО РАН"  VerticalAlignment="Center" FontWeight="Bold" />
+        <StackPanel Orientation="Horizontal" Margin="5,0,0,0" >
+            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="60" Height="60"/>
+            <TextBlock Text="ScientistEquipment Manager" Width="160" TextWrapping="Wrap" FontSize="17" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FF3A3535"/>
         </StackPanel>
         <Canvas Grid.Row="1" Cursor="">
             <Button Command="{Binding OpenScientists}" Height="60" Canvas.Left="3" Canvas.Top="3" Panel.ZIndex="10">

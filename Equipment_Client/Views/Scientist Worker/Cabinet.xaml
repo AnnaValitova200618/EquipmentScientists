@@ -93,6 +93,40 @@
                     </StackPanel>
                 </TabItem.Content>
             </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel>
+                        <TextBlock Text="О программе" FontSize="16"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Orientation="Horizontal" Margin="0,70,0,0" VerticalAlignment="Center" HorizontalAlignment="Center" Background="White" Width="800">
+                            <Image Source="/Image/Закругленный вариант ЛОГОТИПА 1.jpg" Width="250" Height="250" Margin="50,0,0,0"/>
+                            <TextBlock Text="ScientistEquipment Manager" Width="600" TextWrapping="Wrap" Margin="5,0,0,0" FontSize="50" VerticalAlignment="Center" FontWeight="Bold" Foreground="#FF3A3535"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" VerticalAlignment="Center" Width="1000">
+                            <TextBlock TextWrapping="Wrap" Foreground="#FF3A3535" FontSize="22" Padding="15"
+                            Text="ScientistEquipment Manager - desktop-приложение предназначено для автоматизации управления использованием научного оборудования в Тихоокенаском океанологическом институте Дальневосточного отделения Российской академии наук."/>
+                            <TextBlock TextWrapping="Wrap" Foreground="#FF3A3535" FontSize="22" Padding="15"
+                            Text="Версия дистрибутива: 1.0"/>
+
+                            <TextBlock TextWrapping="Wrap" Foreground="#FF3A3535" FontSize="22" Padding="15"
+                            Text=" "/>
+                            <TextBlock TextWrapping="Wrap" Foreground="#FF3A3535" FontSize="22" Padding="15"
+                            Text="Разработан студентом группы 1145 Валитовой Анной Максимовной 6 февраля 2024 года"/>
+                            <TextBlock TextWrapping="Wrap" Foreground="#FF3A3535" FontSize="22" Padding="15"
+                            Text="Электронная почта: anavalitova0@gmail.com"/>
+
+                        </StackPanel>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
         </TabControl>
     </Grid>
 </Page>

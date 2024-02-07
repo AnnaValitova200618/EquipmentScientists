@@ -58,6 +58,8 @@ namespace Equipment_Client.VM.Responsible
                 .Include(s => s.IdTypeOfWorkNavigation)
                 .Include(s => s.Repairs)
                 .Include(s => s.ReplacementOfConsumables)
+                .Include(s=>s.IdBookingNavigation.IdScientistNavigation.IdLaboratotyNavigation.IdDepartmentNavigation)
+                .Include(s=>s.IdBookingNavigation.IdScientistNavigation.IdLaboratotyNavigation)
                 .Where(s => s.IdBookingNavigation.IdEquipmentNavigation.IdReponsibleScientistsNavigation.Id == scientist.Id &&
                             s.DateSigningReportReponsibleScientists != null)
                 .ToList();
