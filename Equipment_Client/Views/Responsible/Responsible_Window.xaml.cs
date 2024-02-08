@@ -29,11 +29,7 @@ namespace Equipment_Client.Views
             DataContext = new ResponsibleWindowVM(scientist, Window);
             Scientists = DBInstance.GetInstance().Scientists.ToList();
 
-            foreach (Scientist scientist1 in Scientists)
-            {
-                fio = $"{scientist1.Lastname} {scientist1.Firstname.Substring(0, 1)}.{scientist1.Patronymic.Substring(0, 1)}.";
-                scientist1.FIO = fio;
-            }
+            
         }
         public string fio { get; set; }
         public List<Scientist> Scientists { get; set; }

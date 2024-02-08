@@ -114,7 +114,6 @@ namespace Equipment_Client.VM.Responsible
                             PointGeometry = DefaultGeometries.Square,
                             PointGeometrySize = 15,
                             Fill = Brushes.Transparent
-                            
                         },
 
                     };

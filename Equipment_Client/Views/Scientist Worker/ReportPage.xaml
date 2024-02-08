@@ -188,7 +188,7 @@
                         <Button Content="Подписать" Visibility="{Binding VisibilityEnd}" Command="{Binding SubscribeResponsable}" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200"/>
                     </StackPanel>
                 
-                <Button Content="Экспорт в Word" Command="{Binding Export}" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200" Visibility="{Binding Word}"/>
+                <Button Content="Экспорт в docx" Command="{Binding Export}" HorizontalAlignment="Center" FontSize="20"  Foreground="White" Height="40" Width="200" Visibility="{Binding Word}"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

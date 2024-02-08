@@ -22,7 +22,7 @@
                       SelectedItem="{Binding SelectYear}" FontSize="15"/>
         </StackPanel>
 
-        <lvc:CartesianChart Series="{Binding SeriesViews}" LegendLocation="Right" Grid.Row="1">
+        <lvc:CartesianChart Series="{Binding SeriesViews}" LegendLocation="Right"  Grid.Row="1">
             <lvc:CartesianChart.AxisY>
                 <lvc:Axis Title="Кол-во бронирований" 
                           LabelFormatter="{Binding YFormatter}" 

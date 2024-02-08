@@ -25,7 +25,14 @@ public partial class Scientist
     public int IdLaboratoty { get; set; }
 
     [NotMapped]
-    public string FIO { get; set; }
+    public string FIO
+    {
+        get
+        {
+            string fio = $"{Lastname} {(Firstname != "" ? (Firstname[0] + ".") : "")}{(Patronymic != "" ? (Patronymic[0] + ".") : "")}";
+            return fio;
+        }
+    }
 
     [NotMapped]
     public bool Choice {  get; set; }
