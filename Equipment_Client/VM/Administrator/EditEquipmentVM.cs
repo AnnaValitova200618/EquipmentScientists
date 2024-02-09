@@ -12,8 +12,19 @@ namespace Equipment_Client.VM.Administrator
 {
     public class EditEquipmentVM : BaseVM
     {
+
+        private ScientistProvider<Scientist> scientistProvider;
         private Scientist selectScientist;
         private Models.Type selectType;
+
+        public ScientistProvider<Scientist> ScientistProvider
+        {
+            get => scientistProvider;
+            set
+            {
+                scientistProvider = value;
+            }
+        }
 
         public List<Scientist> Scientists { get; set; }
         public Scientist SelectScientist
@@ -46,6 +57,7 @@ namespace Equipment_Client.VM.Administrator
                 Scientists = DBInstance.GetInstance().Scientists.Where(s => s.IdPosition == 2 && s.DismissalDate == null).ToList();
                 SelectScientist = Equipment.IdReponsibleScientistsNavigation;
                 SelectType = Equipment.IdTypeNavigation;
+                ScientistProvider = new ScientistProvider<Scientist>(Scientists);
             }
             catch
             {

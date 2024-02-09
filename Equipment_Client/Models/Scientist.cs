@@ -29,7 +29,7 @@ public partial class Scientist
     {
         get
         {
-            string fio = $"{Lastname} {(Firstname != "" ? (Firstname[0] + ".") : "")}{(Patronymic != "" ? (Patronymic[0] + ".") : "")}";
+            string fio = $"{Lastname} {(Firstname.Trim().Length > 0 ? (Firstname[0] + ".") : "")}{(Patronymic.Trim().Length > 0 ? (Patronymic[0] + ".") : "")}";
             return fio;
         }
     }
