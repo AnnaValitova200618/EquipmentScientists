@@ -67,6 +67,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoCompleteTextBox" Version="1.7.2" />
     <PackageReference Include="FreeSpire.Doc" Version="11.6.0" />
     <PackageReference Include="LiveCharts.Wpf.Core" Version="0.9.8" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />

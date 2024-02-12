@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Equipment_Client.Views"
         mc:Ignorable="d"
+        xmlns:editors="http://wpfcontrols.com/"
         x:Name="window"
         Title="Редактирование оборудования" MinHeight="450" MinWidth="800" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -20,9 +21,24 @@
                       SelectedItem="{Binding SelectType}"
                       DisplayMemberPath="Title" FontSize="14"/>
             <Label Content="Ответственный за оборудование" FontWeight="Bold"/>
-            <ComboBox ItemsSource="{Binding Scientists}"
-                      SelectedItem="{Binding SelectScientist}"
-                      DisplayMemberPath="Lastname"/>
+            <editors:AutoCompleteTextBox
+DisplayMember="FIO"
+    FontSize="16"
+Provider="{Binding ScientistProvider}"
+SelectedItem="{Binding SelectScientist, 
+    Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <editors:AutoCompleteTextBox.LoadingContent>
+                    <TextBlock
+        Margin="5"
+        FontSize="14"
+        Text="Загрузка..." />
+                </editors:AutoCompleteTextBox.LoadingContent>
+                <editors:AutoCompleteTextBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding FIO}"/>
+                    </DataTemplate>
+                </editors:AutoCompleteTextBox.ItemTemplate>
+            </editors:AutoCompleteTextBox>
             <Label Content="Габариты" FontWeight="Bold"/>
             <TextBox Text="{Binding Equipment.Dimansions}"/>
             <Label Content="Вес (кг)" FontWeight="Bold"/>
